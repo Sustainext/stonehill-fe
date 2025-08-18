@@ -6,9 +6,7 @@ const Section8 = ({ section9_3_2Ref, data,
   sectionTitle = 'Collective knowledge of the highest governance body',
   sectionOrder = 9,
  }) => {
-  const [content, setContent] = useState(
-    `Our Board of Directors comprises a diverse group of experienced professionals who bring a broad range of expertise and perspectives. The Board is structured to provide balanced oversight and strategic guidance, with committees dedicated to specific areas such as audit, risk management, and sustainability. `
-  );
+
   return (
     <>
       <div id="section9_3_2" ref={section9_3_2Ref}>

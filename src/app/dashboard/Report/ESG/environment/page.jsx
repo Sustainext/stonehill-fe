@@ -676,15 +676,51 @@ const Environment = forwardRef(( {
   
       const scrollToSection = (sectionId) => {
         setActiveSection(sectionId);
+        
+        // Find the dashboard's main scroll container
+        const scrollContainer = document.getElementById('main-scroll-container');
+        
+        // First try using refs
         const sectionRef = sectionRefs.current[sectionId];
-  
         if (sectionRef?.current) {
-          const elementTop =
-            sectionRef.current.getBoundingClientRect().top + window.pageYOffset;
-          window.scrollTo({
-            top: elementTop - 250,
-            behavior: "smooth",
-          });
+          const containerRect = scrollContainer?.getBoundingClientRect() || { top: 0 };
+          const elementRect = sectionRef.current.getBoundingClientRect();
+          const scrollTop = elementRect.top - containerRect.top + (scrollContainer?.scrollTop || 0) - 100;
+          
+          if (scrollContainer) {
+            scrollContainer.scrollTo({
+              top: scrollTop,
+              behavior: "smooth",
+            });
+          } else {
+            // Fallback to window scroll if container not found
+            window.scrollTo({
+              top: elementRect.top + window.pageYOffset - 250,
+              behavior: "smooth",
+            });
+          }
+          return;
+        }
+
+        // Fallback: try to find element by ID
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const containerRect = scrollContainer?.getBoundingClientRect() || { top: 0 };
+          const elementRect = element.getBoundingClientRect();
+          const scrollTop = elementRect.top - containerRect.top + (scrollContainer?.scrollTop || 0) - 100;
+          
+          if (scrollContainer) {
+            scrollContainer.scrollTo({
+              top: scrollTop,
+              behavior: "smooth",
+            });
+          } else {
+            // Fallback to window scroll if container not found
+            window.scrollTo({
+              top: elementRect.top + window.pageYOffset - 250,
+              behavior: "smooth",
+            });
+          }
         }
       };
       const sectionRefs = useRef({});

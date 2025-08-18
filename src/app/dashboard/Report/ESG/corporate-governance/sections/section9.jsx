@@ -11,13 +11,7 @@ const Section9 = ({ section9_3_3Ref, data,
         <h3 className="text-[15px] text-[#344054] mb-4 text-left font-semibold">
          {sectionNumber} {sectionTitle}
         </h3>
-        {/* <p className="text-sm mb-2">
-          {data["2_14_a_and_b"]
-            ? data["2_14_a_and_b"].highest_body_approves_report == "No"
-              ? data["2_14_a_and_b"].highest_body_approves_report
-              : ""
-            : "No data available"}
-        </p> */}
+        
         <p className="text-sm mb-4">
           {data["2_14_a_and_b"]
             ? data["2_14_a_and_b"].reason_for_yes

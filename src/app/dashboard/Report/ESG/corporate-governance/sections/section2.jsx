@@ -78,7 +78,7 @@ const Section2 = ({ section9_1Ref, section9_1_1Ref, data,
                 <tbody>
                   {tableData?.map((rowData, rowIndex) => (
                     <tr key={rowIndex} className="text-[13px]">
-                      {rowData.map((cellData, colIndex) => (
+                      {(Array.isArray(rowData) ? rowData : [rowData]).map((cellData, colIndex) => (
                         <td
                           key={colIndex}
                           className="border-t border-r border-gray-200 p-4 text-center"

@@ -189,7 +189,7 @@ const AnalyseHeader7 = ({
  
   return (
     <>
-      <div className="w-full max-w-full overflow-hidden">
+      <div className="w-full max-w-full overflow-visible">
       <div className="flex-col items-center w-full">
       <div className="mt-4 pb-3 px-2 md:px-4 xl:px-5 text-left w-full max-w-full">
             <div className="mb-2 flex-col items-center">

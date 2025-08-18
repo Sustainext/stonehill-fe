@@ -6,24 +6,14 @@ const Section11 = ({ section9_3_5Ref, data,
   sectionTitle = 'Communication of Critical Concerns',
   sectionOrder = 9,
  }) => {
-  const [content, setContent] = useState(
-    `Our Board of Directors comprises a diverse group of experienced professionals who bring a broad range of expertise and perspectives. The Board is structured to provide balanced oversight and strategic guidance, with committees dedicated to specific areas such as audit, risk management, and sustainability. `
-  );
+  
   return (
     <>
       <div id="section9_3_5" ref={section9_3_5Ref}>
         <h3 className="text-[15px] text-[#344054] mb-4 text-left font-semibold">
           {sectionNumber} {sectionTitle}
         </h3>
-        {/* <textarea
-          value={
-            data["2_16_a"]
-              ? data["2_16_a"].critical_concerns_communication_description
-              : "No data available"
-          }
-          className={`border appearance-none text-sm border-gray-400 text-[#667085] pl-2 rounded-md py-2 leading-tight focus:outline-none mt-2 focus:bg-white focus:border-gray-400 cursor-pointer w-full mb-4 `}
-          rows={4}
-        /> */}
+        
         <p className="text-sm mb-4">
         {
             data["2_16_a"]

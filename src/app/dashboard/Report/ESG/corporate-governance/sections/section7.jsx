@@ -14,7 +14,7 @@ const Section7 = ({ section9_3Ref, section9_3_1Ref, data,
     "Policies",
     "Goals related to sustainable development",
   ];
-  const tableData = data["2_12_a"] ? Object.values(data["2_12_a"]) : "";
+  const tableData = data["2_12_a"] ? Object.values(data["2_12_a"]) : [];
   return (
     <>
      

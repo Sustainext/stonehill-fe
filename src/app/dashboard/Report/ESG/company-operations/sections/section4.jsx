@@ -80,7 +80,7 @@ const Section4 = ({
   };
   return (
     <>
-      <div id="setion2_2" ref={section2_2Ref}>
+      <div ref={section2_2Ref}>
         <h3 className="text-[17px] text-[#344054] mb-4 text-left font-semibold">
           {sectionNumber} {sectionTitle}
         </h3>

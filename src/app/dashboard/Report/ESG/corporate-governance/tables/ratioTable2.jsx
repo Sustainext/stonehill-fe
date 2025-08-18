@@ -32,11 +32,11 @@ const RatioTable2=({col,values,tableData})=>{
         </thead>
         <tbody>
         {values.length>0?values.map((val,index)=>(
-            <tr className="text-[13px]">
-                <td key={index} className="border border-gray-200 p-4 text-left">
+            <tr key={index} className="text-[13px]">
+                <td className="border border-gray-200 p-4 text-left">
                     {val.ratio_of_annual_total_compensation}
                 </td>
-                <td key={index} className="border border-gray-200 p-4 text-left">
+                <td className="border border-gray-200 p-4 text-left">
                     {val.ratio_of_percentage_increase_in_annual_total_compensation}
                 </td>
             </tr>

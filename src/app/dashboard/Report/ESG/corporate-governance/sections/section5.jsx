@@ -7,9 +7,7 @@ const Section5 = ({ section9_2_3Ref, data,
   sectionOrder = 9,
 
  }) => {
-  const [content, setContent] = useState(
-    `Our Board of Directors comprises a diverse group of experienced professionals who bring a broad range of expertise and perspectives. The Board is structured to provide balanced oversight and strategic guidance, with committees dedicated to specific areas such as audit, risk management, and sustainability. `
-  );
+
   return (
     <>
       <div id="section9_2_3" ref={section9_2_3Ref}>

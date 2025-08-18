@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Country, State, City } from "country-state-city";
+// Removed unused import
 import industryList from "@/app/shared/data/sectors";
 import { post } from "@/app/utils/axiosMiddleware";
 import { useRouter } from "next/navigation";
@@ -29,7 +29,7 @@ const QuickAddModal = ({ isOpen, onClose, type, parentName }) => {
   const [statesids, setStatesids] = useState();
   const [selectedCountry, setSelectedCountry] = useState(``);
   const [selectedState, setSelectedState] = useState(``);
-  const [selectedCity, setSelectedCity] = useState("");
+  // Removed unused selectedCity state
   let brsrFrameworkId = Cookies.get('selected_brsr_framework_id') || 0
   const handleCancel = () => {
     setFormData(INITIAL_FORM_STATE);
@@ -42,6 +42,14 @@ const QuickAddModal = ({ isOpen, onClose, type, parentName }) => {
 
   };
   const handleAddCity = async (cityName) => {
+    console.log("handleAddCity called with:", cityName);
+    console.log("statesids:", statesids);
+    
+    if (!statesids) {
+      showToast("Please select a state before adding a city.", "error");
+      throw new Error("State not selected");
+    }
+    
     try {
       // API request to create a new city
       const response = await axiosInstance.post("geo_data/cities/create/", {
@@ -56,14 +64,14 @@ const QuickAddModal = ({ isOpen, onClose, type, parentName }) => {
       setCities((prevCities) => [...prevCities, newCity]);
 
       // Show a success toast message
-      toast.success("City added successfully!");
+      showToast("City added successfully!");
 
       // Return the newly added city (optional)
       return newCity;
     } catch (error) {
       console.error("Error adding city:", error);
       // Show an error toast message
-      toast.error("Failed to add city. Please try again.");
+      showToast("Failed to add city. Please try again.", "error");
       // Handle error accordingly
       throw new Error("Failed to add city");
     }
@@ -161,20 +169,23 @@ const QuickAddModal = ({ isOpen, onClose, type, parentName }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    console.log("handleInputChange:", name, value);
 
     if (name === "country") {
       const [countryId, countryCode] = value.split(":");
+      const selectedCountryObj = countries.find(c => c.id === parseInt(countryId));
+      console.log("Country selected:", countryId, countryCode, selectedCountryObj?.country_name);
       setCountriesids(countryId);
       setSelectedCountry(value);
       setFormData((prev) => ({
         ...prev,
-        country: countryCode,
-
+        country: selectedCountryObj?.country_name || countryCode,
         state: "",
         city: "",
       }));
     } else if (name === "state") {
       const [stateId, stateName] = value.split(":");
+      console.log("State selected:", stateId, stateName);
       setStatesids(stateId);
       setSelectedState(value);
       setFormData((prev) => ({
@@ -183,7 +194,8 @@ const QuickAddModal = ({ isOpen, onClose, type, parentName }) => {
         city: "",
       }));
     } else if (name === "city") {
-      setSelectedCity(value);
+      // Handle city selection if needed
+      console.log("City selected:", value);
     } 
     else {
       setFormData((prev) => ({
@@ -206,12 +218,15 @@ const QuickAddModal = ({ isOpen, onClose, type, parentName }) => {
   };
 
   const validateForm = () => {
+    console.log("validateForm called with formData:", formData);
     const errors = {};
 
     if (!formData.name.trim()) {
+      console.log("Name validation failed");
       errors.name = "Name is required";
     }
     if (!formData.country) {
+      console.log("Country validation failed");
       errors.country = "Country is required";
     }
 
@@ -219,7 +234,7 @@ const QuickAddModal = ({ isOpen, onClose, type, parentName }) => {
       errors.sector = "Sector is required";
     }
 
-    if(brsrFrameworkId ==4 && !formData.email){
+    if(brsrFrameworkId ==4 && !formData.email && type !== "location"){
       errors.email = "E-mail is required";
     }
     if(formData.email){
@@ -237,15 +252,20 @@ const QuickAddModal = ({ isOpen, onClose, type, parentName }) => {
 
     if (type === "location") {
       if (!formData.state) {
+        console.log("State validation failed");
         errors.state = "State is required";
       }
       if (!formData.city) {
+        console.log("City validation failed");
         errors.city = "City is required";
       }
     }
 
+    console.log("Validation errors:", errors);
     setFormErrors(errors);
-    return Object.keys(errors).length === 0;
+    const isValid = Object.keys(errors).length === 0;
+    console.log("Form is valid:", isValid);
+    return isValid;
   };
 
   const handleAddMoreDetails = () => {
@@ -264,9 +284,16 @@ const QuickAddModal = ({ isOpen, onClose, type, parentName }) => {
   };
 
   const handleSubmit = async () => {
+    console.log("handleSubmit called");
+    console.log("Current formData:", formData);
+    console.log("Validation check...");
+    
     if (!validateForm()) {
+      console.log("Validation failed, form errors:", formErrors);
       return;
     }
+    
+    console.log("Validation passed, proceeding with submission...");
 
     let endpoint = "";
     let payload = {};
@@ -429,6 +456,7 @@ const QuickAddModal = ({ isOpen, onClose, type, parentName }) => {
       case "location":
         endpoint = "/locationonlyview";
         entityType = "Location";
+        console.log("Setting up location payload...");
         // payload = {
         //   name: formData.name,
         //   typelocation: formData.locationType,
@@ -478,8 +506,12 @@ const QuickAddModal = ({ isOpen, onClose, type, parentName }) => {
         break;
     }
 
+    console.log("Making API call to:", endpoint);
+    console.log("Payload:", payload);
+    
     try {
       const response = await post(endpoint, payload);
+      console.log("API response:", response);
       showToast(`${entityType} added successfully`);
       onClose();
       setTimeout(() => {
@@ -573,18 +605,19 @@ const QuickAddModal = ({ isOpen, onClose, type, parentName }) => {
         </div>
 
         <div className="mb-4">
+          {console.log("QuickAddModal - cities:", cities.length, "statesids:", statesids, "disabled:", !statesids)}
           <SearchableCityDropdown
             cities={cities}
             selectedCity={formData.city} // Directly bind to formData.city
             onSelectCity={(cityName) => {
-              setSelectedCity(cityName);
+              console.log("onSelectCity called with:", cityName);
               setFormData((prevFormData) => ({
                 ...prevFormData,
                 city: cityName, // Directly update city in the form data
               }));
-           
             }}
             onAddCity={handleAddCity}
+            disabled={!statesids}
             error={formErrors.city }
           />
 
@@ -618,6 +651,8 @@ const QuickAddModal = ({ isOpen, onClose, type, parentName }) => {
   const renderParentInfo = () => {
     if (type === "organization") return null;
 
+    console.log("renderParentInfo - type:", type, "parentName:", parentName);
+
     return (
       <div className="mb-4">
         {type === "location" ? (
@@ -625,13 +660,13 @@ const QuickAddModal = ({ isOpen, onClose, type, parentName }) => {
             <div className="flex flex-col">
               <div className="text-sm text-gray-600 mb-1">Organization</div>
               <div className="inline-block px-3 py-1 rounded-md text-sm bg-blue-100 text-blue-800">
-                {parentName.organization}
+                {parentName.organization || "N/A"}
               </div>
             </div>
             <div className="flex flex-col">
               <div className="text-sm text-gray-600 mb-1">Corporate Entity</div>
               <div className="inline-block px-3 py-1 rounded-md text-sm bg-green-100 text-green-800">
-                {parentName.name}
+                {parentName.name || "N/A"}
               </div>
             </div>
           </div>

@@ -110,7 +110,7 @@ export default function DashboardLayout({ children }) {
             </div>
 
             {/* Scrollable Content - Constrained to available space */}
-            <div className='flex-1 overflow-y-auto overflow-x-hidden px-4 pb-6 min-w-0 scrollable-content'>
+            <div id="main-scroll-container" className='flex-1 overflow-y-auto overflow-x-hidden px-4 pb-6 min-w-0 scrollable-content'>
               <div className='w-full max-w-full'>{children}</div>
             </div>
           </div>

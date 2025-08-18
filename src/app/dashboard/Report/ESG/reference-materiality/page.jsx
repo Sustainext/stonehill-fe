@@ -165,14 +165,27 @@ const ReferenceMateriality = forwardRef(({ onSubmitSuccess,hasChanges }, ref) =>
   const scrollToSection = (sectionRef, sectionId) => {
     setActiveSection(sectionId);
 
-    const elementTop =
-      sectionRef.current?.getBoundingClientRect().top + window.scrollY;
-
-    // Scroll smoothly to the section, ensuring it scrolls up as well
-    window.scrollTo({
-      top: elementTop - 100, // Adjust 100 to the height of any sticky header
-      behavior: "smooth",
-    });
+    // Find the dashboard's main scroll container
+    const scrollContainer = document.getElementById('main-scroll-container');
+    
+    if (sectionRef?.current) {
+      const containerRect = scrollContainer?.getBoundingClientRect() || { top: 0 };
+      const elementRect = sectionRef.current.getBoundingClientRect();
+      const scrollTop = elementRect.top - containerRect.top + (scrollContainer?.scrollTop || 0) - 100;
+      
+      if (scrollContainer) {
+        scrollContainer.scrollTo({
+          top: scrollTop,
+          behavior: "smooth",
+        });
+      } else {
+        // Fallback to window scroll if container not found
+        window.scrollTo({
+          top: elementRect.top + window.pageYOffset - 100,
+          behavior: "smooth",
+        });
+      }
+    }
   };
 
   // useEffect(() => {

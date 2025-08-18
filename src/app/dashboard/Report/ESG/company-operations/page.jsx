@@ -261,15 +261,51 @@ useEffect(() => {
 
     const scrollToSection = (sectionId) => {
       setActiveSection(sectionId);
+      
+      // Find the dashboard's main scroll container
+      const scrollContainer = document.getElementById('main-scroll-container');
+      
+      // First try using refs
       const sectionRef = sectionRefs.current[sectionId];
-
       if (sectionRef?.current) {
-        const elementTop =
-          sectionRef.current.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({
-          top: elementTop - 250,
-          behavior: "smooth",
-        });
+        const containerRect = scrollContainer?.getBoundingClientRect() || { top: 0 };
+        const elementRect = sectionRef.current.getBoundingClientRect();
+        const scrollTop = elementRect.top - containerRect.top + (scrollContainer?.scrollTop || 0) - 100;
+        
+        if (scrollContainer) {
+          scrollContainer.scrollTo({
+            top: scrollTop,
+            behavior: "smooth",
+          });
+        } else {
+          // Fallback to window scroll if container not found
+          window.scrollTo({
+            top: elementRect.top + window.pageYOffset - 250,
+            behavior: "smooth",
+          });
+        }
+        return;
+      }
+
+      // Fallback: try to find element by ID
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const containerRect = scrollContainer?.getBoundingClientRect() || { top: 0 };
+        const elementRect = element.getBoundingClientRect();
+        const scrollTop = elementRect.top - containerRect.top + (scrollContainer?.scrollTop || 0) - 100;
+        
+        if (scrollContainer) {
+          scrollContainer.scrollTo({
+            top: scrollTop,
+            behavior: "smooth",
+          });
+        } else {
+          // Fallback to window scroll if container not found
+          window.scrollTo({
+            top: elementRect.top + window.pageYOffset - 250,
+            behavior: "smooth",
+          });
+        }
       }
     };
 
@@ -459,6 +495,11 @@ useEffect(() => {
 
     // Create refs for each selected subsection
     useEffect(() => {
+      // Always create ref for business_model (Section1)
+      if (!sectionRefs.current["business_model"]) {
+        sectionRefs.current["business_model"] = createRef();
+      }
+      
       selectedSubsections.forEach((section) => {
         if (!sectionRefs.current[section.id]) {
           sectionRefs.current[section.id] = createRef();
@@ -483,7 +524,7 @@ useEffect(() => {
                  if (!SectionComponent) return null;
            
                  return (
-                   <div key={section.id} ref={ref}>
+                   <div key={section.id} id={section.id} ref={ref}>
                      {section.groupTitle && (
                        <div className="mb-2">
                          {/* <h3 className="text-[17px] text-[#344054] mb-4 text-left font-semibold">
@@ -535,18 +576,20 @@ useEffect(() => {
                   
                 </div>
               )} */}
-              <Section1
-                    orgName={orgName}
-                    data={screenTwoData}
-                    sectionOrder={sectionOrder}
-                    sectionNumber={null} // Not numbered
-                  />
+              <div id="business_model" ref={sectionRefs.current["business_model"] || createRef()}>
+                <Section1
+                      orgName={orgName}
+                      data={screenTwoData}
+                      sectionOrder={sectionOrder}
+                      sectionNumber={null} // Not numbered
+                    />
+              </div>
               {numberedSubsections.map((section) => renderSection(section))}
             </div>
 
             {/* Page sidebar - only show if there are subsections */}
             {selectedSubsections.length > 0 && (
-              <div className="p-4 border border-r-2 border-b-2 shadow-lg rounded-lg h-[500px] top-36 sticky mt-2 w-[20%] md:w-[25%] lg:w-[20%] xl:sticky xl:top-36 lg:sticky lg:top-36 md:fixed md:top-[19rem] md:right-4 hidden xl:block md:block lg:block 2k:block 4k:block 2xl:block">
+              <div className="p-4 border border-r-2 border-b-2 shadow-lg rounded-lg h-[500px] top-36 sticky mt-2 w-[20%] md:w-[25%] lg:w-[20%] xl:sticky xl:top-36 lg:sticky lg:top-36 md:fixed md:top-[19rem] md:right-4 hidden xl:block md:block lg:block 2k:block 4k:block 2xl:block z-10 bg-white">
                 <p className="text-[11px] text-[#727272] mb-2 uppercase">
                   {sectionOrder}. About the company and operations
                 </p>

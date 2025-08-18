@@ -7,8 +7,9 @@ const SearchableCityDropdown = ({
   onSelectCity,
   onAddCity, // new prop to add city
   error,
+  disabled = false,
 }) => {
-  console.log(selectedCity,"test selectedCity");
+  console.log("SearchableCityDropdown props:", {selectedCity, cities: cities.length, disabled, onAddCity: !!onAddCity});
   const [searchTerm, setSearchTerm] = useState(selectedCity);
   const [filteredCities, setFilteredCities] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -31,6 +32,7 @@ const SearchableCityDropdown = ({
   }, []);
 
   useEffect(() => {
+    console.log("SearchableCityDropdown useEffect - searchTerm:", searchTerm, "cities:", cities.length);
     if (searchTerm) {
       const filtered = cities.filter((city) =>
         city.city_name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -40,7 +42,9 @@ const SearchableCityDropdown = ({
       const exactMatch = cities.some(
         (city) => city.city_name.toLowerCase() === searchTerm.toLowerCase()
       );
-      setPendingAdd(exactMatch ? null : searchTerm);
+      const shouldShowAdd = exactMatch ? null : searchTerm;
+      console.log("exactMatch:", exactMatch, "shouldShowAdd:", shouldShowAdd);
+      setPendingAdd(shouldShowAdd);
     } else {
       setFilteredCities(cities);
       setPendingAdd(null);
@@ -61,7 +65,8 @@ const SearchableCityDropdown = ({
   };
 
   const handleAddCity = async () => {
-    if (!pendingAdd || !onAddCity) return;
+    if (!pendingAdd || !onAddCity || disabled) return;
+    console.log("SearchableCityDropdown handleAddCity called");
     try {
       setIsAddingCity(true);
       const newCity = await onAddCity(pendingAdd); // handled in parent
@@ -100,10 +105,14 @@ const SearchableCityDropdown = ({
         // Display selected city or search term (pending add city name if typed)
         value={isFocused ? searchTerm : selectedCity || selectedCity}
         onChange={(e) => {
+          console.log("Input onChange:", e.target.value);
           setSearchTerm(e.target.value);
           setIsOpen(true);
         }}
-        onFocus={handleFocus}
+        onFocus={() => {
+          console.log("Input focused");
+          handleFocus();
+        }}
         placeholder="Search or add city..."
         style={{ textTransform: "capitalize" }} 
       />
@@ -134,7 +143,10 @@ const SearchableCityDropdown = ({
             </div>
           )}
 
-          {pendingAdd && (
+          {(() => {
+            console.log("Render check - pendingAdd:", pendingAdd, "disabled:", disabled, "should show:", pendingAdd && !disabled);
+            return pendingAdd && !disabled;
+          })() && (
             <div className="px-4 py-2 border-t text-sm flex justify-between items-center">
               <div className="flex items-center gap-2 text-[#007eef]">
                 <MdAdd size={18} />
@@ -147,7 +159,12 @@ const SearchableCityDropdown = ({
                   <>
                     <button
                       type="button"
-                      onClick={handleAddCity}
+                      onClick={(e) => {
+                        console.log("Add city button clicked");
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleAddCity();
+                      }}
                       className="p-1 hover:bg-gray-100 rounded"
                     >
                       <MdCheck className="text-green-600" size={18} />
@@ -162,6 +179,12 @@ const SearchableCityDropdown = ({
                   </>
                 )}
               </div>
+            </div>
+          )}
+
+          {pendingAdd && disabled && (
+            <div className="px-4 py-2 border-t text-sm text-gray-500">
+              Please select a state first to add a city
             </div>
           )}
         </div>

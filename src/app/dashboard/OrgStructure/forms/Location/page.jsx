@@ -532,7 +532,7 @@ const Location = ({ heading }) => {
     setSelectedCorporateEntityDetails(corporateEntityDetails || null);
   };
 
-  const handleSameAsCorporateChange = (e) => {
+  const handleSameAsCorporateChange = async (e) => {
     setIsSameAsCorporate(e.target.checked);
     if (
       e.target.checked &&
@@ -544,15 +544,70 @@ const Location = ({ heading }) => {
       return;
     }
     if (e.target.checked && selectedCorporateEntityDetails) {
+      console.log("Selected corporate entity details:", selectedCorporateEntityDetails);
       const selectedCountryCode = selectedCorporateEntityDetails.country;
       const selectedStateCode = selectedCorporateEntityDetails.state;
 
-      const statesOfSelectedCountry =
-        State.getStatesOfCountry(selectedCountryCode);
-      const citiesOfSelectedState = City.getCitiesOfState(
-        selectedCountryCode,
-        selectedStateCode
-      );
+      // Find the country object to get the country ID for API calls
+      const countryObject = countries.find(c => c.sortname === selectedCountryCode);
+      
+      if (!countryObject) {
+        console.log("Country not found for code:", selectedCountryCode);
+        return;
+      }
+
+      console.log("Found country:", countryObject);
+
+      // Fetch states based on the country ID using API
+      try {
+        const statesResponse = await axiosInstance.get(
+          `/geo_data/states/?country_id=${countryObject.id}`
+        );
+        const fetchedStates = statesResponse.data || [];
+        console.log("Fetched states from API:", fetchedStates);
+        setStates(fetchedStates);
+
+        // Find the state object in the fetched states
+        const stateObject = fetchedStates.find(s => s.state_name === selectedStateCode);
+        console.log("Found state object:", stateObject);
+
+        if (stateObject) {
+          // Fetch cities based on the state ID using API
+          try {
+            const citiesResponse = await axiosInstance.get(
+              `/geo_data/cities/?state_id=${stateObject.id}`
+            );
+            const fetchedCities = citiesResponse.data || [];
+            console.log("Fetched cities from API:", fetchedCities);
+            setCities(fetchedCities);
+
+            // Set the selected values with proper compound format
+            const countryValue = `${countryObject.id}:${countryObject.sortname}`;
+            const stateValue = `${stateObject.id}:${stateObject.state_name}`;
+            const cityValue = selectedCorporateEntityDetails.city;
+
+            console.log("Setting country:", countryValue);
+            console.log("Setting state:", stateValue);
+            console.log("Setting city:", cityValue);
+
+            // Update dropdown states - use the correct state variables that the dropdowns are bound to
+            setnewSelectedCountry(countryValue);  // Country dropdown uses newselectedCountry
+            setnewSelectedState(stateValue);      // State dropdown uses newselectedState  
+            setSelectedCity(cityValue);           // City dropdown uses selectedCity
+          } catch (error) {
+            console.error("Failed to fetch cities:", error);
+            setCities([]);
+          }
+        } else {
+          console.log("State not found in API data");
+          setSelectedState("");
+          setCities([]);
+        }
+      } catch (error) {
+        console.error("Failed to fetch states:", error);
+        setStates([]);
+        setCities([]);
+      }
 
       setValidationErrors((prev) => ({
         ...prev,
@@ -562,6 +617,14 @@ const Location = ({ heading }) => {
         city: "",
         zipCode: "",
       }));
+
+      console.log("Setting form data with:", {
+        street: selectedCorporateEntityDetails.address,
+        country: selectedCorporateEntityDetails.country,
+        state: selectedCorporateEntityDetails.state,
+        city: selectedCorporateEntityDetails.city,
+        zipCode: selectedCorporateEntityDetails.zipcode,
+      });
 
       setFormData((prevFormData) => ({
         ...prevFormData,
@@ -576,13 +639,6 @@ const Location = ({ heading }) => {
           longitude: selectedCorporateEntityDetails.longitude,
         },
       }));
-
-      setStates(statesOfSelectedCountry);
-      setCities(citiesOfSelectedState);
-
-      setSelectedCountry(selectedCountryCode);
-      setSelectedState(selectedStateCode);
-      setSelectedCity(selectedCorporateEntityDetails.city);
     } else if (!e.target.checked) {
       setFormData((prevFormData) => ({
         ...prevFormData,

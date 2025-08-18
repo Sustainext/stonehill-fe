@@ -162,8 +162,31 @@ const OrgTree = ({ data }) => {
   };
 
   const findOrganization = (node) => {
+    console.log("findOrganization called with node:", node);
     if (!transformedData) return {};
     if (node.type === 'organization') return { name: node.name, id: node.id };
+    
+    // First try to find organization by parentOrgId if available
+    if (node.parentOrgId) {
+      const orgByParentId = transformedData.find(org => org.id === node.parentOrgId);
+      if (orgByParentId) {
+        console.log("Found organization by parentOrgId:", orgByParentId.name);
+        return { name: orgByParentId.name, id: orgByParentId.id };
+      }
+    }
+    
+    // Fallback to the old method if parentOrgId doesn't work
+    console.log("Falling back to old search method");
+    const matchingOrgs = transformedData.filter((org) =>
+      org.children?.some(
+        (child) =>
+          child.id === node.id ||
+          child.children?.some((loc) => loc.id === node.id)
+      )
+    );
+    
+    console.log("Matching organizations for node:", node.name, "ID:", node.id, "=>", matchingOrgs.map(o => o.name));
+    
     const org = transformedData.find((org) =>
       org.children?.some(
         (child) =>
@@ -171,6 +194,8 @@ const OrgTree = ({ data }) => {
           child.children?.some((loc) => loc.id === node.id)
       )
     );
+    
+    console.log("Selected organization:", org?.name);
     return { name: org?.name, id: org?.id };
   };
   const findCorporate = (node) => {
@@ -226,8 +251,11 @@ const OrgTree = ({ data }) => {
   });
   const handleQuickAdd = (e, type, node, isSibling = false) => {
     e.stopPropagation();
+    console.log("handleQuickAdd called - type:", type, "node:", node);
+    
     if (type === 'corporate') {
       const organization = findOrganization(node);
+      console.log("For corporate type - found organization:", organization);
       setQuickAddModal({
         isOpen: true,
         type,

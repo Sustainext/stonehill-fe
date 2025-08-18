@@ -23,15 +23,14 @@ const EnvironmentTrack = ({ dashboardData }) => {
 
   // Load user ID from local storage
   useEffect(() => {
-    const userID = loadFromLocalStorage('user_id');
-    if (userID) {
-      setUserID(userID);
+    const id = loadFromLocalStorage('user_id');
+    if (id) {
+      setUserID(id);
     }
   }, []);
 
   const POWERBI_REFRESH_INTERVAL = 15000;
   const SUPERSET_REFRESH_INTERVAL = 90000;
-
   const filter = {
     $schema: 'http://powerbi.com/product/schema#basic',
     target: {
@@ -41,6 +40,7 @@ const EnvironmentTrack = ({ dashboardData }) => {
     operator: 'In',
     values: [userID],
   };
+
 
   const tabs = [
     { id: 'zohoEmissions', label: 'Emissions (Zoho)' },

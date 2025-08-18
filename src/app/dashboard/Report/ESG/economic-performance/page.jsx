@@ -55,14 +55,7 @@ const EconomicPerformance = forwardRef(
   ) => {
     const [data, setData] = useState("");
     const [initialData, setInitialData] = useState({});
-    // const reportid =
-    //   typeof window !== "undefined" ? localStorage.getItem("reportid") : "";
-    // const orgName =
-    //   typeof window !== "undefined"
-    //     ? localStorage.getItem("reportorgname")
-    //     : "";
-    // const reportType =
-    //   typeof window !== "undefined" ? localStorage.getItem("reportType") : "";
+    
     const [reportid, setReportid] = useState("");
     const [reportType, setReportType] = useState("");
     const [orgName, setOrgname] = useState("");
@@ -386,7 +379,7 @@ const EconomicPerformance = forwardRef(
       }}),
     };
 
-    // console.log(subsections,"look susection")
+    
     
     const getSubsectionsToShow = () => {
       if (reportType === "Custom ESG Report") {
@@ -485,9 +478,9 @@ const EconomicPerformance = forwardRef(
     };
     const selectedSubsections = getSelectedSubsections();
 
-    // const getDynamicSectionMap = () => {
-    //   let groupIndex = 1;
-    //   const dynamicMap = [];
+    
+    
+    
     
     //   groupedSubsections.forEach((group) => {
     //     if (group.children) {
@@ -583,15 +576,51 @@ const EconomicPerformance = forwardRef(
 
     const scrollToSection = (sectionId) => {
       setActiveSection(sectionId);
+      
+      // Find the dashboard's main scroll container
+      const scrollContainer = document.getElementById('main-scroll-container');
+      
+      // First try using refs
       const sectionRef = sectionRefs.current[sectionId];
-
       if (sectionRef?.current) {
-        const elementTop =
-          sectionRef.current.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({
-          top: elementTop - 250,
-          behavior: "smooth",
-        });
+        const containerRect = scrollContainer?.getBoundingClientRect() || { top: 0 };
+        const elementRect = sectionRef.current.getBoundingClientRect();
+        const scrollTop = elementRect.top - containerRect.top + (scrollContainer?.scrollTop || 0) - 100;
+        
+        if (scrollContainer) {
+          scrollContainer.scrollTo({
+            top: scrollTop,
+            behavior: "smooth",
+          });
+        } else {
+          // Fallback to window scroll if container not found
+          window.scrollTo({
+            top: elementRect.top + window.pageYOffset - 250,
+            behavior: "smooth",
+          });
+        }
+        return;
+      }
+
+      // Fallback: try to find element by ID
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const containerRect = scrollContainer?.getBoundingClientRect() || { top: 0 };
+        const elementRect = element.getBoundingClientRect();
+        const scrollTop = elementRect.top - containerRect.top + (scrollContainer?.scrollTop || 0) - 100;
+        
+        if (scrollContainer) {
+          scrollContainer.scrollTo({
+            top: scrollTop,
+            behavior: "smooth",
+          });
+        } else {
+          // Fallback to window scroll if container not found
+          window.scrollTo({
+            top: elementRect.top + window.pageYOffset - 250,
+            behavior: "smooth",
+          });
+        }
       }
     };
     const sectionRefs = useRef({});
@@ -880,7 +909,7 @@ const EconomicPerformance = forwardRef(
 
           {/* Page sidebar - only show if there are subsections */}
           {selectedSubsections.length > 0 && (
-             <div className={`p-4 border border-r-2 border-b-2 shadow-lg rounded-lg ${selectedSubsections.length < 5 ? 'h-[500px]' : 'h-fit'} top-36 sticky mt-2 w-[20%] md:w-[25%] lg:w-[20%] xl:sticky xl:top-36 lg:sticky lg:top-36 md:fixed md:top-[19rem] md:right-4 hidden xl:block md:block lg:block 2k:block 4k:block 2xl:block`}>
+             <div className={`p-4 border border-r-2 border-b-2 shadow-lg rounded-lg ${selectedSubsections.length < 5 ? 'h-[500px]' : 'h-fit'} top-36 sticky mt-2 w-[20%] md:w-[25%] lg:w-[20%] xl:sticky xl:top-36 lg:sticky lg:top-36 md:fixed md:top-[19rem] md:right-4 hidden xl:block md:block lg:block 2k:block 4k:block 2xl:block z-10 bg-white`}>
               <p className="text-[11px] text-[#727272] mb-2 uppercase">
                 {sectionOrder}. Economic Performance 
               </p>

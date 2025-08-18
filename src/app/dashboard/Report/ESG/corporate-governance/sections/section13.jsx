@@ -121,7 +121,7 @@ const Section13 = ({ section9_3_7Ref, data,
           remuneration
         </p>
         <p className="text-sm mb-4">
-          {data["2_20_a"]
+          {data["2_20_a"]?.tableData?.[0]?.How
             ? data["2_20_a"].tableData[0].How
             : "No data available"}
         </p>
@@ -131,7 +131,7 @@ const Section13 = ({ section9_3_7Ref, data,
           remuneration are sought and taken into consideration
         </p>
         <p className="text-sm mb-4">
-          {data["2_20_a"]
+          {data["2_20_a"]?.tableData?.[1]?.How
             ? data["2_20_a"].tableData[1].How
             : "No data available"}
         </p>
@@ -142,7 +142,7 @@ const Section13 = ({ section9_3_7Ref, data,
           governance body and senior executives
         </p>
         <p className="text-sm mb-4">
-          {data["2_20_a"]
+          {data["2_20_a"]?.tableData?.[2]?.How
             ? data["2_20_a"].tableData[2].How
             : "No data available"}
         </p>

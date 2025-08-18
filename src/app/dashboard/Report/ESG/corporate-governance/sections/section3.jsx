@@ -17,17 +17,15 @@ const Section3 = ({ section9_2Ref, section9_2_1Ref, data,
     "Independence",
     "Competencies relevant to the impacts of the Organization",
   ];
-  const tableData = data["2_10_b"]
-    ? data["2_10_b"].governance_body_nomination_criteria
-      ? data["2_10_b"].governance_body_nomination_criteria.map(
-          (item, index) => {
-            return {
-              ...item,
-              Label: rowLabels[index],
-            };
-          }
-        )
-      : []
+  const tableData = Array.isArray(data?.["2_10_b"]?.governance_body_nomination_criteria)
+    ? data["2_10_b"].governance_body_nomination_criteria.map(
+        (item, index) => {
+          return {
+            ...item,
+            Label: rowLabels[index],
+          };
+        }
+      )
     : [];
 
   return (
