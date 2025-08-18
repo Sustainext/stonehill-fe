@@ -260,11 +260,11 @@ const MyGoals = () => {
           {/* <ToastContainer style={{ fontSize: "12px" }} /> */}
           <div
             key={goal.id}
-            className="flex justify-between border-b border-[#ebeced] py-2"
+            className="flex border-b border-[#ebeced] py-2"
           >
             {/* Task Name Column */}
-            <div className="flex w-[10rem] xl:w-[13rem] md:w-[13rem] lg:w-[13rem] 4k:w-[26rem] 2xl:w-[26rem] cursor-pointer">
-              <div className="w-72 truncate text-[#007eef] text-[13px] font-normal leading-none ml-3">
+            <div className="flex-[2] cursor-pointer">
+              <div className="truncate text-[#007eef] text-[13px] font-normal leading-none ml-3">
                 <p
                   className="py-1 cursor-pointer"
                   data-tooltip-id={`goal-tooltip-${goal.id}`}
@@ -278,7 +278,7 @@ const MyGoals = () => {
             </div>
 
             {/* Status Column */}
-            <div className="flex-grow">
+            <div className="flex-[1] min-w-[80px] ml-2">
               <div className="text-left">
                 <div className="flex items-center gap-2">
                   <div
@@ -298,8 +298,8 @@ const MyGoals = () => {
             </div>
 
             {/* Due Date Column */}
-            <div className="flex mr-4">
-              <div className="w-[68px] text-neutral-500 text-xs font-normal leading-[15px]">
+            <div className="flex-[1] mr-4 text-right">
+              <div className="text-neutral-500 text-xs font-normal leading-[15px]">
                 <Moment format="DD/MM/YYYY">{goal.deadline}</Moment>
               </div>
             </div>
@@ -344,17 +344,17 @@ const MyGoals = () => {
           ))}
         </div>
 
-        <div className="flex justify-between px-4 py-2 text-sm font-medium text-gray-500 border-b">
+        <div className="flex px-4 py-2 text-sm font-medium text-gray-500 border-b">
           {/* Task Name Column */}
-          <div className="w-[10rem] xl:w-[13rem] md:w-[13rem] lg:w-[13rem] 4k:w-[26rem] 2xl:w-[26rem] -ml-2">
+          <div className="flex-[2] -ml-2">
             Tasks
           </div>
 
           {/* Status Column */}
-          <div className="flex-grow ml-2">Status</div>
+          <div className="flex-[1] ml-2 min-w-[80px]">Status</div>
 
           {/* Due Date Column */}
-          <div className="w-[68px] mr-1">Due Date</div>
+          <div className="flex-[1] mr-1 text-right">Due Date</div>
         </div>
 
         <div className="flex-1 overflow-auto table-scrollbar">

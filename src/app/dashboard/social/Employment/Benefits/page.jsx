@@ -1,18 +1,18 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import { MdOutlineClear, MdInfoOutline, MdChevronRight } from "react-icons/md";
-import { Socialdata } from "../../data/socialgriinfo";
-import { Tooltip as ReactTooltip } from "react-tooltip";
-import "react-tooltip/dist/react-tooltip.css";
-import Socialheader2 from "../../socialheader2";
+'use client';
+import React, { useState, useEffect } from 'react';
+import { MdOutlineClear, MdInfoOutline, MdChevronRight } from 'react-icons/md';
+import { Socialdata } from '../../data/socialgriinfo';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
+import 'react-tooltip/dist/react-tooltip.css';
+import Socialheader2 from '../../socialheader2';
 // import Benefitsscreen from "./Benefits"
-import Benefitsnew from "./demo";
-import Benefitstab from "./tab";
-import Significantlocations from "./Significant-locations";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useSelector } from "react-redux";
-import SocialTopBar from "../../socialTopBar";
+import Benefitsnew from './demo';
+import Benefitstab from './tab';
+import Significantlocations from './Significant-locations';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from 'react-redux';
+import SocialTopBar from '../../socialTopBar';
 
 const Benefits = ({ apiData, setMobileopen }) => {
   const {
@@ -24,19 +24,19 @@ const Benefits = ({ apiData, setMobileopen }) => {
     loading,
     error,
   } = useSelector((state) => state.materialitySlice);
-  const [year, setYear] = useState(materiality_year ? materiality_year : "");
+  const [year, setYear] = useState(materiality_year ? materiality_year : '');
   const [selectedOrg, setSelectedOrg] = useState(
-    organization_id ? organization_id : ""
+    organization_id ? organization_id : ''
   );
   const [selectedCorp, setSelectedCorp] = useState(
-    corporate_id ? corporate_id : ""
+    corporate_id ? corporate_id : ''
   );
   const [activeMonth, setActiveMonth] = useState(1);
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState('');
   const [data, setData] = useState();
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const [togglestatus, setToggleStatus] = useState("Organization");
+  const [togglestatus, setToggleStatus] = useState('Organization');
 
   const toggleDrawerclose = () => {
     setIsOpen(!isOpen);
@@ -59,50 +59,50 @@ const Benefits = ({ apiData, setMobileopen }) => {
   }, [category]);
   const griData = [
     {
-      tagName: "GRI 401 - 2",
-      toggle: "5",
-      textColor: "#007EEF",
-      bgColor: "bg-slate-200",
+      tagName: 'GRI 401 - 2',
+      toggle: '5',
+      textColor: '#007EEF',
+      bgColor: 'bg-slate-200',
     },
   ];
 
   const sdgData = [
     {
-      tagName: "SDG 3",
-      toggle: "6",
-      textColor: "#fff",
-      bgColor: "bg-green-500",
+      tagName: 'SDG 3',
+      toggle: '6',
+      textColor: '#fff',
+      bgColor: 'bg-green-500',
     },
     {
-      tagName: "SDG 5",
-      toggle: "7",
-      textColor: "#fff",
-      bgColor: "bg-orange-600",
+      tagName: 'SDG 5',
+      toggle: '7',
+      textColor: '#fff',
+      bgColor: 'bg-orange-600',
     },
     {
-      tagName: "SDG 8",
-      toggle: "8",
-      textColor: "#fff",
-      bgColor: "bg-red-900",
+      tagName: 'SDG 8',
+      toggle: '8',
+      textColor: '#fff',
+      bgColor: 'bg-red-900',
     },
   ];
 
   return (
     <>
-      <ToastContainer style={{ fontSize: "12px" }} />
-      <div className="flex flex-col justify-start overflow-x-hidden ">
+      <ToastContainer style={{ fontSize: '12px' }} />
+      <div className='flex flex-col justify-start overflow-x-hidden '>
         <SocialTopBar
           toggleDrawer={toggleDrawer}
           sdgData={sdgData}
           apiData={apiData}
-          title={"Employment"}
-          topic={"SocEmployment"}
+          title={'Employment'}
+          topic={'SocEmployment'}
           griData={griData}
           setMobileopen={setMobileopen}
         />
 
-        <div className="ml-3 flex">
-          <h6 className="text-[17px] mb-4 font-semibold flex">
+        <div className='ml-3 flex'>
+          <h6 className='text-[17px] mb-4 font-semibold flex'>
             Benefits provided to full-time employees that are not provided to
             temporary or part-time employees
             {/* <MdInfoOutline data-tooltip-id={`tooltip-$e1`}
@@ -123,8 +123,8 @@ const Benefits = ({ apiData, setMobileopen }) => {
         <div
           className={`${
             isOpen
-              ? "translate-x-[15%] block top-16"
-              : "translate-x-[120%] hidden top-16"
+              ? 'translate-x-[15%] block top-16'
+              : 'translate-x-[120%] hidden top-16'
           }
 fixed right-[51px]  w-[360px] h-[92%] bg-white  rounded-md
 transition-transform duration-300 ease-in-out z-[100] shadow-2xl px-2`}
@@ -133,11 +133,11 @@ transition-transform duration-300 ease-in-out z-[100] shadow-2xl px-2`}
             data.map((program, index) => (
               <div key={index}>
                 {/* Header */}
-                <div className="flex justify-between p-2 pt-5 pb-4 border-b-2 ">
-                  <div className="ml-2 h-[38px]">{program.header}</div>
-                  <div className="ml-2 float-right ">
+                <div className='flex justify-between p-2 pt-5 pb-4 border-b-2 '>
+                  <div className='ml-2 h-[38px]'>{program.header}</div>
+                  <div className='ml-2 float-right '>
                     <h5
-                      className="text-[#727272] text-[17px] font-bold cursor-pointer"
+                      className='text-[#727272] text-[17px] font-bold cursor-pointer'
                       onClick={toggleDrawerclose}
                     >
                       <MdOutlineClear />
@@ -145,25 +145,25 @@ transition-transform duration-300 ease-in-out z-[100] shadow-2xl px-2`}
                   </div>
                 </div>
 
-                <div className="hidden xl:block lg:block md:block 2xl:block 4k:block 2k:block 3xl:block">
-                  <div className="h-[calc(100vh-30px)] overflow-y-auto custom-scrollbar p-2">
+                <div className='hidden xl:block lg:block md:block 2xl:block 4k:block 2k:block 3xl:block'>
+                  <div className='h-[calc(100vh-180px)] overflow-y-auto custom-scrollbar p-2'>
                     {program.data}
                   </div>
                 </div>
-                <div className="block xl:hidden lg:hidden md:hidden 2xl:hidden 4k:hidden 2k:hidden 3xl:hidden">
-                  <div className="h-[calc(68vh-30px)] overflow-y-auto custom-scrollbar p-2">
+                <div className='block xl:hidden lg:hidden md:hidden 2xl:hidden 4k:hidden 2k:hidden 3xl:hidden'>
+                  <div className='h-[calc(68vh-30px)] overflow-y-auto custom-scrollbar p-2'>
                     {program.data}
                   </div>
                 </div>
 
                 {/* Footer (Learn more link) */}
-                <div className="pt-2 pb-4 ml-4">
+                <div className='pt-2 pb-4 ml-4'>
                   <a
-                    className="text-[14px] text-[#2196F3] pt-1 inline-flex"
+                    className='text-[14px] text-[#2196F3] pt-1 inline-flex'
                     href={program.link}
-                    target="_blank"
+                    target='_blank'
                   >
-                    Learn more <MdChevronRight className="text-lg pt-1" />
+                    Learn more <MdChevronRight className='text-lg pt-1' />
                   </a>
                 </div>
               </div>
@@ -180,27 +180,27 @@ transition-transform duration-300 ease-in-out z-[100] shadow-2xl px-2`}
         setToggleStatus={setToggleStatus}
       />
 
-      <div className=" relative">
-        <h6 className="text-[15px] mb-4 ml-3 text-[#344054]  flex">
+      <div className=' relative'>
+        <h6 className='text-[15px] mb-4 ml-3 text-[#344054]  flex'>
           Benefits provided to full-time employees that are not provided to
           temporary or part-time employees
           <MdInfoOutline
             data-tooltip-id={`tooltip-$e156`}
-            data-tooltip-content="This table documents data corresponding to the standard benefits offered to full-time employees of the organization, which are generally not available to temporary or part-time employees. Compilation requirements: When compiling the information specified in Disclosure 401-2, the reporting organization shall exclude in-kind benefits such as provision of sports or child day care facilities, free meals during working time, and similar general employee welfare programs."
-            className="mt-1.5 ml-2 text-[15px]"
+            data-tooltip-content='This table documents data corresponding to the standard benefits offered to full-time employees of the organization, which are generally not available to temporary or part-time employees. Compilation requirements: When compiling the information specified in Disclosure 401-2, the reporting organization shall exclude in-kind benefits such as provision of sports or child day care facilities, free meals during working time, and similar general employee welfare programs.'
+            className='mt-1.5 ml-2 text-[15px]'
           />
           <ReactTooltip
             id={`tooltip-$e156`}
-            place="top"
-            effect="solid"
+            place='top'
+            effect='solid'
             style={{
-              width: "290px",
-              backgroundColor: "#000",
-              color: "white",
-              fontSize: "12px",
+              width: '290px',
+              backgroundColor: '#000',
+              color: 'white',
+              fontSize: '12px',
               boxShadow: 3,
-              borderRadius: "8px",
-              textAlign: "left",
+              borderRadius: '8px',
+              textAlign: 'left',
             }}
           ></ReactTooltip>
         </h6>

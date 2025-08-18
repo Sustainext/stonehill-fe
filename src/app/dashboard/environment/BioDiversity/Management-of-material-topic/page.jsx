@@ -332,7 +332,7 @@ const BioDiversityMaterialTopic = ({apiData,setMobileopen}) => {
                     </div>
     
                     {/* Data Content */}
-                    <div className="h-[calc(100vh-30px)] overflow-y-auto custom-scrollbar p-2">
+                    <div className="h-[calc(100vh-180px)] overflow-y-auto custom-scrollbar p-2">
                       {program.data}
                     </div>
     

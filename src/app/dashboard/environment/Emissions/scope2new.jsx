@@ -300,7 +300,11 @@ const Scope2 = forwardRef(
     useEffect(() => {
       setHasAutoFilled(false);
       console.log('Resetting autofill flag due to location/year/month change');
-    }, [location, year, month]);
+      // Force data refresh when location, year, or month changes
+      if (location && year && month) {
+        dispatch(fetchAssignedTasks({ location, year, month }));
+      }
+    }, [location, year, month, dispatch]);
 
     // Imperative handle for Calculate button
     useImperativeHandle(ref, () => ({

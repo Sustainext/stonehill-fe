@@ -75,7 +75,7 @@ const social = () => {
         </div>
       ) : (
         <div className='flex-1 min-w-0 max-w-full overflow-hidden pl-4'>
-          <div className='hidden xl:block lg:block md:hidden 2xl:block 4k:block 2k:block sticky xl:top-0 lg:top-0 2xl:top-14 4k:top-14 bg-white z-[100]'>
+          <div className='hidden xl:block lg:block md:hidden 2xl:block 4k:block 2k:block sticky top-0 bg-white z-[100]'>
             <Header
               activeTab={activeTab}
               setIsBoxOpen={setIsBoxOpen}

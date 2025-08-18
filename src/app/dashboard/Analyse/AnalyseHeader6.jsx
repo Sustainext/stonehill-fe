@@ -87,7 +87,7 @@ const AnalyseHeader6 = ({ location, setLocation, dateRange, setDateRange }) => {
             </label>
             <select
               name='location'
-              className='border w-full text-[12px] text-neutral-500 appearance-none pr-8 rounded-md py-2 pl-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+              className='faulty border w-full text-[12px] text-neutral-500 appearance-none pr-8 rounded-md py-2 pl-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
               value={formState.location}
               onChange={handleChange}
             >

@@ -1,25 +1,25 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import { MdOutlineClear, MdInfoOutline, MdChevronRight } from "react-icons/md";
-import { Tooltip as ReactTooltip } from "react-tooltip";
-import "react-tooltip/dist/react-tooltip.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { Socialdata } from "../data/socialgriinfo";
-import SocialHeader2 from "../socialheader2";
-import SocialTopBar from '../socialTopBar'
-import BRSRScreen1 from "./screen1";
+'use client';
+import React, { useState, useEffect } from 'react';
+import { MdOutlineClear, MdInfoOutline, MdChevronRight } from 'react-icons/md';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
+import 'react-tooltip/dist/react-tooltip.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Socialdata } from '../data/socialgriinfo';
+import SocialHeader2 from '../socialheader2';
+import SocialTopBar from '../socialTopBar';
+import BRSRScreen1 from './screen1';
 
 const CSR = ({ setMobileopen }) => {
-  const [activeMonth, setActiveMonth] = useState("");
-  const [location, setLocation] = useState("");
+  const [activeMonth, setActiveMonth] = useState('');
+  const [location, setLocation] = useState('');
   const [year, setYear] = useState();
   const [data, setData] = useState();
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOrg, setSelectedOrg] = useState("");
-  const [selectedCorp, setSelectedCorp] = useState("");
-  const [togglestatus, setToggleStatus] = useState("Organization");
+  const [selectedOrg, setSelectedOrg] = useState('');
+  const [selectedCorp, setSelectedCorp] = useState('');
+  const [togglestatus, setToggleStatus] = useState('Organization');
   const toggleDrawerclose = () => {
     setIsOpen(!isOpen);
   };
@@ -39,23 +39,22 @@ const CSR = ({ setMobileopen }) => {
     // //console.log(newData);
     setData(newData);
   }, [category]);
-  
+
   const brsr = [
     {
-      tagName: "BRSR-A-VI-24",
-      id: "tooltip-$brsr1",
-      content: "BRSR-Section A-VI-24",
+      tagName: 'BRSR-A-VI-24',
+      id: 'tooltip-$brsr1',
+      content: 'BRSR-Section A-VI-24',
     },
-
   ];
   return (
     <>
-      <ToastContainer style={{ fontSize: "12px" }} />
-      <div className="flex flex-col justify-start overflow-x-hidden ">
+      <ToastContainer style={{ fontSize: '12px' }} />
+      <div className='flex flex-col justify-start overflow-x-hidden '>
         <SocialTopBar
           toggleDrawer={toggleDrawer}
           brsr={brsr}
-          title={"Corporate Social Responsibility"}
+          title={'Corporate Social Responsibility'}
           setMobileopen={setMobileopen}
         />
         {/* <div className="flex justify-between items-center border-b border-gray-200 mb-5 w-full">
@@ -83,29 +82,29 @@ const CSR = ({ setMobileopen }) => {
           </div>
         </div> */}
 
-        <div className="ml-3 flex relative">
-          <h6 className="text-[17px] mb-4 font-semibold flex">
-           CSR Details
+        <div className='ml-3 flex relative'>
+          <h6 className='text-[17px] mb-4 font-semibold flex'>
+            CSR Details
             <MdInfoOutline
               data-tooltip-id={`tooltip-$e10`}
-              data-tooltip-content="This section documents data corresponding to CSR 
+              data-tooltip-content='This section documents data corresponding to CSR 
 applicability under Section 135 of the Companies Act, 2013, 
 the entity’s turnover and net worth, CSR projects in designated 
-aspirational districts, and the number of project beneficiaries"
-              className="mt-1.5 ml-2 text-[15px]"
+aspirational districts, and the number of project beneficiaries'
+              className='mt-1.5 ml-2 text-[15px]'
             />
             <ReactTooltip
               id={`tooltip-$e10`}
-              place="top"
-              effect="solid"
+              place='top'
+              effect='solid'
               style={{
-                width: "290px",
-                backgroundColor: "#000",
-                color: "white",
-                fontSize: "12px",
+                width: '290px',
+                backgroundColor: '#000',
+                color: 'white',
+                fontSize: '12px',
                 boxShadow: 3,
-                borderRadius: "8px",
-                textAlign: "left",
+                borderRadius: '8px',
+                textAlign: 'left',
               }}
             ></ReactTooltip>
           </h6>
@@ -113,8 +112,8 @@ aspirational districts, and the number of project beneficiaries"
         <div
           className={`${
             isOpen
-              ? "translate-x-[15%] block top-16"
-              : "translate-x-[120%] hidden top-16"
+              ? 'translate-x-[15%] block top-16'
+              : 'translate-x-[120%] hidden top-16'
           }
 fixed right-[51px]  w-[360px] h-[92%] bg-white  rounded-md
 transition-transform duration-300 ease-in-out z-[100] shadow-2xl px-2`}
@@ -123,11 +122,11 @@ transition-transform duration-300 ease-in-out z-[100] shadow-2xl px-2`}
             data.map((program, index) => (
               <div key={index}>
                 {/* Header */}
-                <div className="flex justify-between p-2 pt-5 pb-4 border-b-2 ">
-                  <div className="ml-2 h-[38px]">{program.header}</div>
-                  <div className="ml-2 float-right ">
+                <div className='flex justify-between p-2 pt-5 pb-4 border-b-2 '>
+                  <div className='ml-2 h-[38px]'>{program.header}</div>
+                  <div className='ml-2 float-right '>
                     <h5
-                      className="text-[#727272] text-[17px] font-bold cursor-pointer"
+                      className='text-[#727272] text-[17px] font-bold cursor-pointer'
                       onClick={toggleDrawerclose}
                     >
                       <MdOutlineClear />
@@ -135,25 +134,25 @@ transition-transform duration-300 ease-in-out z-[100] shadow-2xl px-2`}
                   </div>
                 </div>
 
-                <div className="hidden xl:block lg:block md:block 2xl:block 4k:block 2k:block 3xl:block">
-                  <div className="h-[calc(100vh-30px)] overflow-y-auto custom-scrollbar p-2">
+                <div className='hidden xl:block lg:block md:block 2xl:block 4k:block 2k:block 3xl:block'>
+                  <div className='h-[calc(100vh-180px)] overflow-y-auto custom-scrollbar p-2'>
                     {program.data}
                   </div>
                 </div>
-                <div className="block xl:hidden lg:hidden md:hidden 2xl:hidden 4k:hidden 2k:hidden 3xl:hidden">
-                  <div className="h-[calc(90vh-30px)] overflow-y-auto custom-scrollbar p-2">
+                <div className='block xl:hidden lg:hidden md:hidden 2xl:hidden 4k:hidden 2k:hidden 3xl:hidden'>
+                  <div className='h-[calc(90vh-180px)] overflow-y-auto custom-scrollbar p-2'>
                     {program.data}
                   </div>
                 </div>
 
                 {/* Footer (Learn more link) */}
-                <div className="pt-2 pb-4 ml-4">
+                <div className='pt-2 pb-4 ml-4'>
                   <a
-                    className="text-[14px] text-[#2196F3] pt-1 inline-flex"
+                    className='text-[14px] text-[#2196F3] pt-1 inline-flex'
                     href={program.link}
-                    target="_blank"
+                    target='_blank'
                   >
-                    Learn more <MdChevronRight className="text-lg pt-1" />
+                    Learn more <MdChevronRight className='text-lg pt-1' />
                   </a>
                 </div>
               </div>
@@ -179,7 +178,6 @@ transition-transform duration-300 ease-in-out z-[100] shadow-2xl px-2`}
         month={activeMonth}
         togglestatus={togglestatus}
       />
-      
     </>
   );
 };

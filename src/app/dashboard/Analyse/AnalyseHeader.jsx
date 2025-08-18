@@ -99,7 +99,7 @@ const AnalyseHeader = ({
           <div className='relative mb-2'>
             <select
               name='location'
-              className='border m-0.5 text-[12px] text-neutral-500 appearance-none pr-24 rounded-md py-2 pl-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+              className='faulty border m-0.5 text-[12px] text-neutral-500 appearance-none pr-24 rounded-md py-2 pl-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
               value={formState.location}
               onChange={handleChange}
             >
@@ -128,7 +128,7 @@ const AnalyseHeader = ({
           <div className='ml-3 relative mb-2'>
             <select
               name='year'
-              className='border m-0.5 text-[12px] text-neutral-500 appearance-none pr-32 rounded-md py-2 pl-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+              className='faulty border m-0.5 text-[12px] text-neutral-500 appearance-none pr-32 rounded-md py-2 pl-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
               value={formState.year}
               onChange={handleChange}
             >

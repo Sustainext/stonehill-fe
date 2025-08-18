@@ -16,7 +16,7 @@ const ViewMyTaskDetailsModal = ({ isOpen, onClose, task }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="flex gap-3 max-w-[1250px] h-[90vh]">
+          <div className="flex gap-3 max-w-[1250px] max-h-[90vh] m-4 overflow-hidden">
       <div className="bg-white rounded-lg w-[390px] max-h-[90vh] overflow-y-auto table-scrollbar">
         <div className="p-6">
           {/* Header */}

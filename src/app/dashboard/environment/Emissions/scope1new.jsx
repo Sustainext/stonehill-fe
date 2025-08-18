@@ -679,10 +679,14 @@ const Scope1 = forwardRef(
       JSON.stringify(previousMonthData.scope1Data?.data),
     ]);
 
-    // Reset autofill flag
+    // Reset autofill flag and trigger data refetch
     useEffect(() => {
       setHasAutoFilled(false);
-    }, [location, year, month]);
+      // Force data refresh when location, year, or month changes
+      if (location && year && month) {
+        dispatch(fetchAssignedTasks({ location, year, month }));
+      }
+    }, [location, year, month, dispatch]);
 
     // Scope re-render effect
     useEffect(() => {}, [scopeReRender]);

@@ -80,7 +80,7 @@ const AnalyseHeader3 = ({
             </label>
             <select
               name='location'
-              className='border w-full text-[12px] text-neutral-500 appearance-none pr-8 rounded-md py-2 pl-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+              className='faulty border w-full text-[12px] text-neutral-500 appearance-none pr-8 rounded-md py-2 pl-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
               value={formState.location}
               onChange={handleChange}
             >
@@ -117,7 +117,7 @@ const AnalyseHeader3 = ({
             </label>
             <select
               name='year'
-              className='border w-full text-[12px] text-neutral-500 appearance-none pr-8 rounded-md py-2 pl-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+              className='faulty border w-full text-[12px] text-neutral-500 appearance-none pr-8 rounded-md py-2 pl-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
               value={formState.year}
               onChange={handleChange}
             >
