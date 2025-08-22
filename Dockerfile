@@ -1,6 +1,6 @@
 #---------------- STAGE 1: The Builder ----------------
 # Use the full Node.js image to build the app
-FROM tgtreg.azurecr.io/node:18 AS builder
+FROM stonehillreg.azurecr.io/node:18 AS builder
 
 # Set the working directory
 WORKDIR /app
@@ -23,7 +23,7 @@ RUN npm run build
 
 #---------------- STAGE 2: The Production Runner ----------------
 # Use a much smaller and more secure "alpine" image for the final stage
-FROM tgtreg.azurecr.io/node:18-alpine
+FROM stonehillreg.azurecr.io/node:18-alpine
 
 # Set the working directory
 WORKDIR /app
