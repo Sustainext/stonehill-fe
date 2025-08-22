@@ -1,0 +1,20 @@
+# Git
+.git
+.gitignore
+
+# Dependencies
+node_modules
+
+# Build output
+.next
+build
+dist
+
+# Local environment variables
+.env*
+!/.env.production
+
+# IDE and OS files
+.vscode/
+.idea/
+*.DS_Store

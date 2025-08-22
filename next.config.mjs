@@ -69,12 +69,13 @@ const nextConfig = {
 
     return config;
   },
-  distDir: 'custom_build',
+  //distDir: 'custom_build',
   experimental: {
     missingSuspenseWithCSRBailout: false,
     swcMinify: true,
   },
   reactStrictMode: true,
+  output: 'standalone',
 };
 
 export default nextConfig;
