@@ -43,12 +43,12 @@ const EnvironmentTrack = ({ dashboardData }) => {
 
 
   const tabs = [
-    { id: 'zohoEmissions', label: 'Emissions (Zoho)' },
+    // { id: 'zohoEmissions', label: 'Emissions (Zoho)' },
     { id: 'powerbiEmissions', label: 'Emissions (PowerBI)' },
-    { id: 'powerbiEnergy', label: 'Energy (PowerBI)' },
-    { id: 'powerbiWaste', label: 'Waste (PowerBI)' },
-    { id: 'powerbiMaterials', label: 'Materials (PowerBI)' },
-    { id: 'powerbiWater', label: 'Water & Effluents (PowerBI)' },
+    // { id: 'powerbiEnergy', label: 'Energy (PowerBI)' },
+    // { id: 'powerbiWaste', label: 'Waste (PowerBI)' },
+    // { id: 'powerbiMaterials', label: 'Materials (PowerBI)' },
+    // { id: 'powerbiWater', label: 'Water & Effluents (PowerBI)' },
   ];
 
   useEffect(() => {

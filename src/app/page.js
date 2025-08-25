@@ -256,9 +256,9 @@ export default function Home() {
                   </button>
                 </div>
               </form>
-              <div className="mt-4">
+              {/* <div className="mt-4">
                 <Auth0LoginButton/>
-              </div>
+              </div>    */}
             </div>
           </div>
           </div>

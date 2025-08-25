@@ -54,7 +54,7 @@ function Ghgtemplates() {
   const [isOpenmobile, setIsOpenmobile] = useState(false);
   const orgName =
     typeof window !== "undefined" ? localStorage.getItem("reportorgname") : "";
-    const corpName =
+  const corpName =
     typeof window !== "undefined" ? localStorage.getItem("reportCorpName") : "";
   const reportname =
     typeof window !== "undefined" ? localStorage.getItem("reportname") : "";
@@ -67,7 +67,8 @@ function Ghgtemplates() {
 
   const reportId =
     typeof window !== "undefined" ? localStorage.getItem("reportid") : "";
-  const reportType= typeof window !== "undefined" ? localStorage.getItem("reportType") : ""; 
+  const reportType =
+    typeof window !== "undefined" ? localStorage.getItem("reportType") : "";
   const reportstartdate = reportstartdateStr
     ? new Date(reportstartdateStr)
     : null;
@@ -124,7 +125,10 @@ function Ghgtemplates() {
     const total = corporatesData.reduce((acc, corporate) => {
       const scopesTotal = corporate.scopes.reduce((scopeAcc, scope) => {
         // Skip Scope-3 if corporate_type is "Investment"
-        if (corporate.corporate_type === "Investment" && scope.scope_name === "Scope-3") {
+        if (
+          corporate.corporate_type === "Investment" &&
+          scope.scope_name === "Scope-3"
+        ) {
           return scopeAcc; // Skip adding Scope-3
         }
         const totalCo2e = parseFloat(scope.total_co2e);
@@ -154,30 +158,32 @@ function Ghgtemplates() {
       const maxContribution = Math.max(
         ...sourcesData.map((source) => parseFloat(source.contribution_source))
       );
-    
+
       const highestSources = sourcesData.filter(
         (source) => parseFloat(source.contribution_source) === maxContribution
       );
-    
-      const highestSourceNames = highestSources.map((source) => {
-        // Find the matching corporate by source_name
-        const matchingCorporate = corporates.find(
-          (corp) =>
-            corp.corporate_name === source.source_name &&
-            corp.sources.some((s) => s.source_name === source.source_name)
-        );
-    
-        // Add " (Investments)" if it's an Investment corporate
-        if (matchingCorporate?.corporate_type === "Investment") {
-          return `Investments`;
-        } else {
-          return source.source_name;
-        }
-      }).join(", ");
-    
+
+      const highestSourceNames = highestSources
+        .map((source) => {
+          // Find the matching corporate by source_name
+          const matchingCorporate = corporates.find(
+            (corp) =>
+              corp.corporate_name === source.source_name &&
+              corp.sources.some((s) => s.source_name === source.source_name)
+          );
+
+          // Add " (Investments)" if it's an Investment corporate
+          if (matchingCorporate?.corporate_type === "Investment") {
+            return `Investments`;
+          } else {
+            return source.source_name;
+          }
+        })
+        .join(", ");
+
       setHighestContributionSource(highestSourceNames);
     }
-    
+
     LoaderClose();
   };
 
@@ -646,19 +652,21 @@ function Ghgtemplates() {
                     </button>
                   )}
                   <h1 className="text-lg text-left mb-2">
-                    <p className="ml-3">{reportType=='GHG Report - Investments'?'Investments - Carbon Accounting Report':'Carbon Accounting Report'}</p>
+                    <p className="ml-3">
+                      {reportType == "GHG Report - Investments"
+                        ? "Investments - Carbon Accounting Report"
+                        : "Carbon Accounting Report"}
+                    </p>
                     <p className="text-[#667085] text-[13px] ml-3">
                       Organization
-                       {corpName ? " / Corporate" : ""}:{" "}
-                      {orgName}{" "}
-                      {corpName?' / ':''}
+                      {corpName ? " / Corporate" : ""}: {orgName}{" "}
+                      {corpName ? " / " : ""}
                       {corpName}{" "}
                       {/* {groupId?.corporate?.length > 0
                         ? "/ " + groupId?.corporate.join(", ")
                         : ""} */}
                     </p>
                   </h1>
-                  
                 </div>
               </div>
               <div>
@@ -1053,19 +1061,21 @@ function Ghgtemplates() {
             <div className="flex justify-between shadow-md border-gray-100 mt-4 py-2">
               <div className="flex items-center justify-center">
                 <h1 className="text-lg text-left">
-                  <p className="ml-3">{reportType=='GHG Report - Investments'?'Investments - Carbon Accounting Report':'Carbon Accounting Report'}</p>
+                  <p className="ml-3">
+                    {reportType == "GHG Report - Investments"
+                      ? "Investments - Carbon Accounting Report"
+                      : "Carbon Accounting Report"}
+                  </p>
                   <p className="text-[#667085] text-[13px] ml-3">
-                      Organization
-                       {corpName ? " / Corporate" : ""}:{" "}
-                      {orgName}{" "}
-                      {corpName?' / ':''}
-                      {corpName}{" "}
-                      {/* {groupId?.corporate?.length > 0
+                    Organization
+                    {corpName ? " / Corporate" : ""}: {orgName}{" "}
+                    {corpName ? " / " : ""}
+                    {corpName}{" "}
+                    {/* {groupId?.corporate?.length > 0
                         ? "/ " + groupId?.corporate.join(", ")
                         : ""} */}
-                    </p>
+                  </p>
                 </h1>
-                
               </div>
               <div className="float-right mr-2 flex items-center justify-center ">
                 <div className="flex items-center justify-center">
@@ -1267,15 +1277,17 @@ function Ghgtemplates() {
             {isOpen && (
               <div className="w-[11.3rem] bg-white shadow-xl z-10 float-right">
                 <div className="px-3 mb-1 py-2">
-                  <div className="mb-2">
-                    <h5
-                      className="text-blue-500 cursor-pointer text-sm flex"
-                      onClick={handleDownloaddocx}
-                    >
-                      <MdFileDownload className="text-[18px]" /> Download as
-                      Docx
-                    </h5>
-                  </div>
+                  {reportType !== "GHG Report - Investments" && (
+                    <div className="mb-2">
+                      <h5
+                        className="text-blue-500 cursor-pointer text-sm flex"
+                        onClick={handleDownloaddocx}
+                      >
+                        <MdFileDownload className="text-[18px]" /> Download as
+                        Docx
+                      </h5>
+                    </div>
+                  )}
                   <div>
                     <h5
                       className="text-blue-500 cursor-pointer text-sm flex"

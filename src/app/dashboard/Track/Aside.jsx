@@ -11,14 +11,14 @@ import {
 // Optional icon mapping
 const tabIcons = {
   Environment: <MdPublic className="w-5 h-5 mr-3" />,
-  Social: <MdOutlineGroup className="w-5 h-5 mr-3" />,
-  Governance: <MdOutlineDiversity1 className="w-5 h-5 mr-3" />,
-  General: <MdOutlineDiversity1 className="w-5 h-5 mr-3" />,
-  Economic: <MdOutlineDiversity1 className="w-5 h-5 mr-3" />,
+  // Social: <MdOutlineGroup className="w-5 h-5 mr-3" />,
+  // Governance: <MdOutlineDiversity1 className="w-5 h-5 mr-3" />,
+  // General: <MdOutlineDiversity1 className="w-5 h-5 mr-3" />,
+  // Economic: <MdOutlineDiversity1 className="w-5 h-5 mr-3" />,
 };
 
 const AsideContent = ({ activeTab, handleTabClick, closeMobile }) => {
-  const tabs = ["Environment", "Social", "Governance", "General", "Economic"];
+  const tabs = ["Environment"];
 
   return (
     <div className="flex flex-col font-medium w-full">

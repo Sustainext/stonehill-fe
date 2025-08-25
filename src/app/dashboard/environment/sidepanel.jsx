@@ -25,71 +25,71 @@ const sectionTabMap = {
     "EmissionIntensity",
     "EmissionReductionInitiatives",
   ],
-  energy: [
-    "Management of Material topic energy",
-    "Energy consumed inside the organization",
-    "Energy consumption outside of the organization",
-    "Energy Intensity",
-    "Reduction of energy consumption",
-    "Reductions in energy requirements of products and services",
-    "Standards, methodologies, assumptions and calculation tools used",
-  ],
-  waste: [
-    "Significant waste related impact",
-    "Management of significant waste related impacts",
-    "Management of Material topic waste",
-    "Waste generated",
-    "Waste Diverted from disposal",
-    "Waste diverted to disposal",
-    "Data Collection Methodology",
-    "Significant Spills",
-  ],
-  materials: [
-    "Management of Material topic Materials",
-    "Materials used by weight or volume",
-    "Recycled input materials used",
-  ],
-  packaging: [
-    "Management of Material topic Packaging Materials",
-    "Reclaimed products and their packaging materials",
-  ],
-  water: [
-    "Management of Material topic Water",
-    "Interaction with water as shared resource",
-    "Water Withdrawal and Water Discharge from All Areas",
-    "Water withdrawal/Discharge from areas with water stress",
-    "Substances of concern",
-    "Change in water storage",
-  ],
-  biodiversity: [
-    "Management of Material topic Bio diversity",
-    "Biodiversity Policies",
-    "Management of biodiversity impacts",
-    "Synergies, Trade-offs & Stakeholder Engagement",
-    "Access and benefit-sharing",
-    "Operational Sites",
-    "Significant impacts",
-    "Habitat Protected",
-    "IUCN",
-    "Identification of biodiversity impacts",
-    "Location with Significant impacts on Biodiversity",
-    "Changes in Ecosystem Use and Biodiversity Condition",
-    "Ecosystem services and beneficiaries",
-    "Products/Services with impact on Biodiversity",
-    "Standards, methodologies, and assumptions"
-  ],
-  supplier: [
-    "Management of Material topic Supplier",
-    "New suppliers that were screened using environmental criteria",
-    "Negative environmental impacts in the supply chain and actions taken",
-  ],
-  airquality: [
-    "Management of Material topic air quality",
-    "Nitrogen Oxides",
-    "Standard Methodology",
-    "ODS Import Export",
-    "Emissions ODS",
-  ],
+  // energy: [
+  //   "Management of Material topic energy",
+  //   "Energy consumed inside the organization",
+  //   "Energy consumption outside of the organization",
+  //   "Energy Intensity",
+  //   "Reduction of energy consumption",
+  //   "Reductions in energy requirements of products and services",
+  //   "Standards, methodologies, assumptions and calculation tools used",
+  // ],
+  // waste: [
+  //   "Significant waste related impact",
+  //   "Management of significant waste related impacts",
+  //   "Management of Material topic waste",
+  //   "Waste generated",
+  //   "Waste Diverted from disposal",
+  //   "Waste diverted to disposal",
+  //   "Data Collection Methodology",
+  //   "Significant Spills",
+  // ],
+  // materials: [
+  //   "Management of Material topic Materials",
+  //   "Materials used by weight or volume",
+  //   "Recycled input materials used",
+  // ],
+  // packaging: [
+  //   "Management of Material topic Packaging Materials",
+  //   "Reclaimed products and their packaging materials",
+  // ],
+  // water: [
+  //   "Management of Material topic Water",
+  //   "Interaction with water as shared resource",
+  //   "Water Withdrawal and Water Discharge from All Areas",
+  //   "Water withdrawal/Discharge from areas with water stress",
+  //   "Substances of concern",
+  //   "Change in water storage",
+  // ],
+  // biodiversity: [
+  //   "Management of Material topic Bio diversity",
+  //   "Biodiversity Policies",
+  //   "Management of biodiversity impacts",
+  //   "Synergies, Trade-offs & Stakeholder Engagement",
+  //   "Access and benefit-sharing",
+  //   "Operational Sites",
+  //   "Significant impacts",
+  //   "Habitat Protected",
+  //   "IUCN",
+  //   "Identification of biodiversity impacts",
+  //   "Location with Significant impacts on Biodiversity",
+  //   "Changes in Ecosystem Use and Biodiversity Condition",
+  //   "Ecosystem services and beneficiaries",
+  //   "Products/Services with impact on Biodiversity",
+  //   "Standards, methodologies, and assumptions"
+  // ],
+  // supplier: [
+  //   "Management of Material topic Supplier",
+  //   "New suppliers that were screened using environmental criteria",
+  //   "Negative environmental impacts in the supply chain and actions taken",
+  // ],
+  // airquality: [
+  //   "Management of Material topic air quality",
+  //   "Nitrogen Oxides",
+  //   "Standard Methodology",
+  //   "ODS Import Export",
+  //   "Emissions ODS",
+  // ],
 };
 
 const menu = [
@@ -118,229 +118,229 @@ const menu = [
       },
     ],
   },
-  {
-    key: "energy",
-    label: "Energy",
-    icon: <MdOutlineTungsten className="w-5 h-5 mr-2" />,
-    material: "EnvEnergy",
-    mandatoryLabel: "Management of Material topic",
-    mandatoryKey: "Management of Material topic energy",
-    tabs: [
-      {
-        key: "Energy consumed inside the organization",
-        label: "Energy consumed inside the organization",
-      },
-      {
-        key: "Energy consumption outside of the organization",
-        label: "Energy consumption outside of the organization",
-      },
-      { key: "Energy Intensity", label: "Energy Intensity" },
-      {
-        key: "Reduction of energy consumption",
-        label: "Reduction of energy consumption",
-      },
-      {
-        key: "Reductions in energy requirements of products and services",
-        label: "Reductions in energy requirements of products and services",
-      },
-      {
-        key: "Standards, methodologies, assumptions and calculation tools used",
-        label:
-          "Standards, methodologies, assumptions and calculation tools used",
-      },
-    ],
-  },
-  {
-    key: "waste",
-    label: "Waste Management",
-    icon: <MdOutlineDeleteOutline className="w-5 h-5 mr-2" />,
-    material: "EnvWasteManagement",
-    mandatoryLabel: "Management of Material topic",
-    mandatoryKey: "Management of Material topic waste",
-    tabs: [
-      {
-        key: "Significant waste related impact",
-        label: "Significant waste related impact",
-      },
-      {
-        key: "Management of significant waste related impacts",
-        label: "Management of significant waste related impacts",
-      },
-      { key: "Waste generated", label: "Waste generated" },
-      {
-        key: "Waste Diverted from disposal",
-        label: "Waste Diverted from disposal",
-      },
-      {
-        key: "Waste diverted to disposal",
-        label: "Waste Directed to disposal",
-      },
-      {
-        key: "Data Collection Methodology",
-        label: "Data Collection Methodology",
-      },
-      { key: "Significant Spills", label: "Significant Spills" },
-    ],
-  },
-  {
-    key: "materials",
-    label: "Material Use and Efficiency",
-    icon: <GiWoodPile className="w-5 h-5 mr-2" />,
-    material: "EnvRawMaterialSourcing",
-    mandatoryLabel: "Management of Material topic",
-    mandatoryKey: "Management of Material topic Materials",
-    tabs: [
-      {
-        key: "Materials used by weight or volume",
-        label: "Materials used by weight or volume",
-      },
-      {
-        key: "Recycled input materials used",
-        label: "Recycled input materials used",
-      },
-    ],
-  },
-  {
-    key: "packaging",
-    label: "Packaging Material",
-    icon: <LuPackage className="w-5 h-5 mr-2" />,
-    material: "EnvPackagingMaterial",
-    mandatoryLabel: "Management of Material topic",
-    mandatoryKey: "Management of Material topic Packaging Materials",
-    tabs: [
-      {
-        key: "Reclaimed products and their packaging materials",
-        label: "Reclaimed products and their packaging materials",
-      },
-    ],
-  },
-  {
-    key: "water",
-    label: "Water and effluents",
-    icon: <MdOutlineWater className="w-5 h-5 mr-2" />,
-    material: "EnvWaterEffluent",
-    mandatoryLabel: "Management of Material topic",
-    mandatoryKey: "Management of Material topic Water",
-    tabs: [
-      {
-        key: "Interaction with water as shared resource",
-        label: "Interaction with water as shared resource",
-      },
-      {
-        key: "Water Withdrawal and Water Discharge from All Areas",
-        label: "Water Withdrawal and Water Discharge from All Areas",
-      },
-      {
-        key: "Water withdrawal/Discharge from areas with water stress",
-        label:
-          "Water withdrawal and Water Discharge from areas with water stress",
-      },
-      { key: "Substances of concern", label: "Substances of concern" },
-      { key: "Change in water storage", label: "Change in water storage" },
-    ],
-  },
-  {
-    key: "biodiversity",
-    label: "Bio Diversity",
-    icon: <MdEmojiNature className="w-6 h-6 mr-2" />,
-    material: "EnvBioDiversityLandUse",
-    mandatoryLabel: "Management of Material topic",
-    mandatoryKey: "Management of Material topic Bio diversity",
-    tabs: [
-      {
-        key: "Operational Sites",
-        label: "Operational Sites In/Near Areas of High Biodiversity Value",
-      },
-      {
-        key: "Significant impacts",
-        label: "Significant impacts on Biodiversity",
-      },
-      { key: "Habitat Protected", label: "Habitat Protected or Restored" },
-      {
-        key: "IUCN",
-        label: "IUCN & national conservation list species in affected areas",
-      },
+  // {
+  //   key: "energy",
+  //   label: "Energy",
+  //   icon: <MdOutlineTungsten className="w-5 h-5 mr-2" />,
+  //   material: "EnvEnergy",
+  //   mandatoryLabel: "Management of Material topic",
+  //   mandatoryKey: "Management of Material topic energy",
+  //   tabs: [
+  //     {
+  //       key: "Energy consumed inside the organization",
+  //       label: "Energy consumed inside the organization",
+  //     },
+  //     {
+  //       key: "Energy consumption outside of the organization",
+  //       label: "Energy consumption outside of the organization",
+  //     },
+  //     { key: "Energy Intensity", label: "Energy Intensity" },
+  //     {
+  //       key: "Reduction of energy consumption",
+  //       label: "Reduction of energy consumption",
+  //     },
+  //     {
+  //       key: "Reductions in energy requirements of products and services",
+  //       label: "Reductions in energy requirements of products and services",
+  //     },
+  //     {
+  //       key: "Standards, methodologies, assumptions and calculation tools used",
+  //       label:
+  //         "Standards, methodologies, assumptions and calculation tools used",
+  //     },
+  //   ],
+  // },
+  // {
+  //   key: "waste",
+  //   label: "Waste Management",
+  //   icon: <MdOutlineDeleteOutline className="w-5 h-5 mr-2" />,
+  //   material: "EnvWasteManagement",
+  //   mandatoryLabel: "Management of Material topic",
+  //   mandatoryKey: "Management of Material topic waste",
+  //   tabs: [
+  //     {
+  //       key: "Significant waste related impact",
+  //       label: "Significant waste related impact",
+  //     },
+  //     {
+  //       key: "Management of significant waste related impacts",
+  //       label: "Management of significant waste related impacts",
+  //     },
+  //     { key: "Waste generated", label: "Waste generated" },
+  //     {
+  //       key: "Waste Diverted from disposal",
+  //       label: "Waste Diverted from disposal",
+  //     },
+  //     {
+  //       key: "Waste diverted to disposal",
+  //       label: "Waste Directed to disposal",
+  //     },
+  //     {
+  //       key: "Data Collection Methodology",
+  //       label: "Data Collection Methodology",
+  //     },
+  //     { key: "Significant Spills", label: "Significant Spills" },
+  //   ],
+  // },
+  // {
+  //   key: "materials",
+  //   label: "Material Use and Efficiency",
+  //   icon: <GiWoodPile className="w-5 h-5 mr-2" />,
+  //   material: "EnvRawMaterialSourcing",
+  //   mandatoryLabel: "Management of Material topic",
+  //   mandatoryKey: "Management of Material topic Materials",
+  //   tabs: [
+  //     {
+  //       key: "Materials used by weight or volume",
+  //       label: "Materials used by weight or volume",
+  //     },
+  //     {
+  //       key: "Recycled input materials used",
+  //       label: "Recycled input materials used",
+  //     },
+  //   ],
+  // },
+  // {
+  //   key: "packaging",
+  //   label: "Packaging Material",
+  //   icon: <LuPackage className="w-5 h-5 mr-2" />,
+  //   material: "EnvPackagingMaterial",
+  //   mandatoryLabel: "Management of Material topic",
+  //   mandatoryKey: "Management of Material topic Packaging Materials",
+  //   tabs: [
+  //     {
+  //       key: "Reclaimed products and their packaging materials",
+  //       label: "Reclaimed products and their packaging materials",
+  //     },
+  //   ],
+  // },
+  // {
+  //   key: "water",
+  //   label: "Water and effluents",
+  //   icon: <MdOutlineWater className="w-5 h-5 mr-2" />,
+  //   material: "EnvWaterEffluent",
+  //   mandatoryLabel: "Management of Material topic",
+  //   mandatoryKey: "Management of Material topic Water",
+  //   tabs: [
+  //     {
+  //       key: "Interaction with water as shared resource",
+  //       label: "Interaction with water as shared resource",
+  //     },
+  //     {
+  //       key: "Water Withdrawal and Water Discharge from All Areas",
+  //       label: "Water Withdrawal and Water Discharge from All Areas",
+  //     },
+  //     {
+  //       key: "Water withdrawal/Discharge from areas with water stress",
+  //       label:
+  //         "Water withdrawal and Water Discharge from areas with water stress",
+  //     },
+  //     { key: "Substances of concern", label: "Substances of concern" },
+  //     { key: "Change in water storage", label: "Change in water storage" },
+  //   ],
+  // },
+  // {
+  //   key: "biodiversity",
+  //   label: "Bio Diversity",
+  //   icon: <MdEmojiNature className="w-6 h-6 mr-2" />,
+  //   material: "EnvBioDiversityLandUse",
+  //   mandatoryLabel: "Management of Material topic",
+  //   mandatoryKey: "Management of Material topic Bio diversity",
+  //   tabs: [
+  //     {
+  //       key: "Operational Sites",
+  //       label: "Operational Sites In/Near Areas of High Biodiversity Value",
+  //     },
+  //     {
+  //       key: "Significant impacts",
+  //       label: "Significant impacts on Biodiversity",
+  //     },
+  //     { key: "Habitat Protected", label: "Habitat Protected or Restored" },
+  //     {
+  //       key: "IUCN",
+  //       label: "IUCN & national conservation list species in affected areas",
+  //     },
 
-      { key: "Biodiversity Policies", label: "Biodiversity Policies" },
-      {
-        key: "Management of biodiversity impacts",
-        label: "Management of biodiversity impacts",
-      },
-      {
-        key: "Synergies, Trade-offs & Stakeholder Engagement",
-        label: "Synergies, Trade-offs & Stakeholder Engagement",
-      },
-      {
-        key: "Access and benefit-sharing",
-        label: "Access and benefit-sharing",
-      },
-      { key: "Identification of biodiversity impacts", label: "Identification of biodiversity impacts" },
-      {
-        key: "Location with Significant impacts on Biodiversity",
-        label: "Location with Significant impacts on Biodiversity",
-      },
-      {
-        key: "Changes in Ecosystem Use and Biodiversity Condition",
-        label: "Changes in Ecosystem Use and Biodiversity Condition",
-      },
-      {
-        key: "Ecosystem services and beneficiaries",
-        label: "Ecosystem services and beneficiaries",
-      },
-      {
-        key:"Products/Services with impact on Biodiversity",
-        label:"Products/Services with impact on Biodiversity"
-      },
-      {
-        key:"Standards, methodologies, and assumptions",
-        label:"Standards, methodologies, and assumptions"
-      }
+  //     { key: "Biodiversity Policies", label: "Biodiversity Policies" },
+  //     {
+  //       key: "Management of biodiversity impacts",
+  //       label: "Management of biodiversity impacts",
+  //     },
+  //     {
+  //       key: "Synergies, Trade-offs & Stakeholder Engagement",
+  //       label: "Synergies, Trade-offs & Stakeholder Engagement",
+  //     },
+  //     {
+  //       key: "Access and benefit-sharing",
+  //       label: "Access and benefit-sharing",
+  //     },
+  //     { key: "Identification of biodiversity impacts", label: "Identification of biodiversity impacts" },
+  //     {
+  //       key: "Location with Significant impacts on Biodiversity",
+  //       label: "Location with Significant impacts on Biodiversity",
+  //     },
+  //     {
+  //       key: "Changes in Ecosystem Use and Biodiversity Condition",
+  //       label: "Changes in Ecosystem Use and Biodiversity Condition",
+  //     },
+  //     {
+  //       key: "Ecosystem services and beneficiaries",
+  //       label: "Ecosystem services and beneficiaries",
+  //     },
+  //     {
+  //       key:"Products/Services with impact on Biodiversity",
+  //       label:"Products/Services with impact on Biodiversity"
+  //     },
+  //     {
+  //       key:"Standards, methodologies, and assumptions",
+  //       label:"Standards, methodologies, and assumptions"
+  //     }
       
-    ],
-  },
-  {
-    key: "supplier",
-    label: "Supplier Environmental Assessment",
-    icon: <MdOutlineWarehouse className="w-5 h-5 mr-2" />,
-    material: "EnvSupplyChainSustainability",
-    mandatoryLabel: "Management of Material topic",
-    mandatoryKey: "Management of Material topic Supplier",
-    tabs: [
-      {
-        key: "New suppliers that were screened using environmental criteria",
-        label: "New suppliers that were screened using environmental criteria",
-      },
-      {
-        key: "Negative environmental impacts in the supply chain and actions taken",
-        label:
-          "Negative environmental impacts in the supply chain and actions taken",
-      },
-    ],
-  },
-  {
-    key: "airquality",
-    label: "Air Quality & other emissions",
-    icon: <MdOutlineAir className="w-5 h-5 mr-2" />,
-    material: "EnvAirQuality",
-    mandatoryLabel: "Management of Material topic",
-    mandatoryKey: "Management of Material topic air quality",
-    tabs: [
-      {
-        key: "Nitrogen Oxides",
-        label:
-          "Nitrogen oxides (NOx), sulfur oxides (SOx), and other significant air emissions",
-      },
-      {
-        key: "Standard Methodology",
-        label: "Standards, methodologies, and assumptions used",
-      },
-      { key: "ODS Import Export", label: "ODS Production, Import and Export" },
-      {
-        key: "Emissions ODS",
-        label: "Emissions of ozone- depleting substances (ODS)",
-      },
-    ],
-  },
+  //   ],
+  // },
+  // {
+  //   key: "supplier",
+  //   label: "Supplier Environmental Assessment",
+  //   icon: <MdOutlineWarehouse className="w-5 h-5 mr-2" />,
+  //   material: "EnvSupplyChainSustainability",
+  //   mandatoryLabel: "Management of Material topic",
+  //   mandatoryKey: "Management of Material topic Supplier",
+  //   tabs: [
+  //     {
+  //       key: "New suppliers that were screened using environmental criteria",
+  //       label: "New suppliers that were screened using environmental criteria",
+  //     },
+  //     {
+  //       key: "Negative environmental impacts in the supply chain and actions taken",
+  //       label:
+  //         "Negative environmental impacts in the supply chain and actions taken",
+  //     },
+  //   ],
+  // },
+  // {
+  //   key: "airquality",
+  //   label: "Air Quality & other emissions",
+  //   icon: <MdOutlineAir className="w-5 h-5 mr-2" />,
+  //   material: "EnvAirQuality",
+  //   mandatoryLabel: "Management of Material topic",
+  //   mandatoryKey: "Management of Material topic air quality",
+  //   tabs: [
+  //     {
+  //       key: "Nitrogen Oxides",
+  //       label:
+  //         "Nitrogen oxides (NOx), sulfur oxides (SOx), and other significant air emissions",
+  //     },
+  //     {
+  //       key: "Standard Methodology",
+  //       label: "Standards, methodologies, and assumptions used",
+  //     },
+  //     { key: "ODS Import Export", label: "ODS Production, Import and Export" },
+  //     {
+  //       key: "Emissions ODS",
+  //       label: "Emissions of ozone- depleting substances (ODS)",
+  //     },
+  //   ],
+  // },
 ];
 
 const tabToSectionKey = Object.entries(sectionTabMap).reduce(

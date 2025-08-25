@@ -14,10 +14,9 @@ import {
   setStartDate,
   setEndDate,
   setMaterialityYear,
-  setIsYearChanged
+  setIsYearChanged,
 } from "../../../lib/redux/features/materialitySlice";
-import { MdKeyboardArrowDown } from 'react-icons/md';
-
+import { MdKeyboardArrowDown } from "react-icons/md";
 
 const EnvironmentHeade2 = ({
   activeMonth,
@@ -28,13 +27,21 @@ const EnvironmentHeade2 = ({
   setSelectedCorp,
   year,
   setYear,
-  setToggleStatus
+  setToggleStatus,
 }) => {
-
   const dispatch = useDispatch();
-  const { corporate_id, organization_id,materiality_year, start_date, end_date, data,assessment_year,is_year_changed, loading, error } = useSelector(
-    (state) => state.materialitySlice
-  );
+  const {
+    corporate_id,
+    organization_id,
+    materiality_year,
+    start_date,
+    end_date,
+    data,
+    assessment_year,
+    is_year_changed,
+    loading,
+    error,
+  } = useSelector((state) => state.materialitySlice);
 
   const [formState, setFormState] = useState({
     selectedCorp: selectedCorp,
@@ -47,7 +54,7 @@ const EnvironmentHeade2 = ({
   const handleReportTypeChange = (type) => {
     setReportType(type);
     setToggleStatus(type);
-  
+
     if (type === "Organization") {
       setSelectedCorp(""); // Clear selectedCorp when Organization is chosen
       dispatch(setCorpID("")); // Reset corporate ID in Redux store
@@ -58,7 +65,6 @@ const EnvironmentHeade2 = ({
 
   const [organisations, setOrganisations] = useState([]);
   const [corporates, setCorporates] = useState([]);
-  
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -73,8 +79,8 @@ const EnvironmentHeade2 = ({
     } else if (name === "year") {
       setYear(value);
       // setIsyearChanged(true)
-      dispatch(setIsYearChanged(true))
-      dispatch(setMaterialityYear(value))
+      dispatch(setIsYearChanged(true));
+      dispatch(setMaterialityYear(value));
       setErrors((prevErrors) => ({
         ...prevErrors,
         year: value ? "" : "Please select year",
@@ -116,13 +122,11 @@ const EnvironmentHeade2 = ({
           });
           setCorporates(response.data);
         } catch (e) {
-          if(e.status === 404) {
+          if (e.status === 404) {
             setCorporates([]);
-          }
-          else{
+          } else {
             console.error("Failed fetching corporates:", e);
           }
-          
         }
       }
     };
@@ -130,52 +134,47 @@ const EnvironmentHeade2 = ({
     fetchCorporates();
   }, [selectedOrg]);
 
- const loadMaterialityDashboard=()=>{
-  if(selectedOrg&&year){
-    dispatch(
-      fetchMaterialityData({
-        corporate: selectedCorp,
-        organization: selectedOrg,
-        start_date:year?`${year}-01-01`:'',
-          end_date:  year?`${year}-12-31`:'',
-        // start_date: year==assessment_year?start_date?start_date:`${year}-01-01`:is_year_changed?`${year}-01-01`:start_date?start_date:`${year}-01-01`,
-        //   end_date: year==assessment_year?end_date?end_date:`${year}-12-31`:is_year_changed?`${year}-12-31`:end_date?end_date:`${year}-12-31`,
-      })
-    );
-  }
-  else{
-    dispatch(
-      fetchMaterialityData({
-        corporate: '',
-        organization:'',
-        start_date:'',
-        end_date:'',
-      })
-    );
-  }
-  
-  }
-
-
-
-  useEffect(()=>{
-
-    if(organization_id){
-      setSelectedOrg(organization_id)
+  const loadMaterialityDashboard = () => {
+    if (selectedOrg && year) {
+      dispatch(
+        fetchMaterialityData({
+          corporate: selectedCorp,
+          organization: selectedOrg,
+          start_date: year ? `${year}-01-01` : "",
+          end_date: year ? `${year}-12-31` : "",
+          // start_date: year==assessment_year?start_date?start_date:`${year}-01-01`:is_year_changed?`${year}-01-01`:start_date?start_date:`${year}-01-01`,
+          //   end_date: year==assessment_year?end_date?end_date:`${year}-12-31`:is_year_changed?`${year}-12-31`:end_date?end_date:`${year}-12-31`,
+        })
+      );
+    } else {
+      dispatch(
+        fetchMaterialityData({
+          corporate: "",
+          organization: "",
+          start_date: "",
+          end_date: "",
+        })
+      );
     }
-    if(corporate_id){
-      setSelectedCorp(corporate_id)
+  };
+
+  useEffect(() => {
+    if (organization_id) {
+      setSelectedOrg(organization_id);
     }
-    if(materiality_year){
-      setYear(materiality_year)
+    if (corporate_id) {
+      setSelectedCorp(corporate_id);
+    }
+    if (materiality_year) {
+      setYear(materiality_year);
     }
     setErrors({
-      organization: organization_id || selectedOrg?"":"Please select Organisation",
-      corporate: corporate_id || selectedCorp?"":"Please select Corporate",
+      organization:
+        organization_id || selectedOrg ? "" : "Please select Organisation",
+      corporate: corporate_id || selectedCorp ? "" : "Please select Corporate",
       year: materiality_year || year ? "" : "Please select year",
-    })
-
-  },[organization_id,corporate_id,materiality_year])
+    });
+  }, [organization_id, corporate_id, materiality_year]);
 
   useEffect(() => {
     setFormState({
@@ -184,46 +183,44 @@ const EnvironmentHeade2 = ({
       year: year,
       month: activeMonth,
     });
-    dispatch(setOrgID(selectedOrg))
-    dispatch(setCorpID(selectedCorp))
-    dispatch(setMaterialityYear(year))
-    loadMaterialityDashboard()
+    dispatch(setOrgID(selectedOrg));
+    dispatch(setCorpID(selectedCorp));
+    dispatch(setMaterialityYear(year));
+    loadMaterialityDashboard();
   }, [selectedOrg, selectedCorp, year]);
 
   const handleOrgChange = (e) => {
     const newOrg = e.target.value;
     const selectedOption = e.target.selectedOptions[0];
-    const newOrgName = selectedOption.getAttribute('name');
+    const newOrgName = selectedOption.getAttribute("name");
     setSelectedOrg(newOrg);
-    dispatch(setOrgID(newOrg))
-    dispatch(setOrgName(newOrgName))
-    dispatch(setCorpID(""))
-    dispatch(setCorpName(""))
+    dispatch(setOrgID(newOrg));
+    dispatch(setOrgName(newOrgName));
+    dispatch(setCorpID(""));
+    dispatch(setCorpName(""));
     setSelectedCorp("");
     setErrors((prevErrors) => ({
       ...prevErrors,
       organization: newOrg ? "" : "Please select Organisation",
     }));
-    
   };
 
   const handleCorpChange = (e) => {
     const newCorp = e.target.value;
     const selectedOption = e.target.selectedOptions[0];
-    const newCorpName = selectedOption.getAttribute('name');
+    const newCorpName = selectedOption.getAttribute("name");
     setSelectedCorp(newCorp);
-    dispatch(setCorpID(newCorp))
-    dispatch(setCorpName(newCorpName))
+    dispatch(setCorpID(newCorp));
+    dispatch(setCorpName(newCorpName));
     setErrors((prevErrors) => ({
       ...prevErrors,
       corporate: newCorp ? "" : "Please select Corporate",
     }));
-    
   };
   useEffect(() => {
     if (selectedCorp) {
       setReportType("Corporate");
-  // console.log(selectedCorp,"test crop id");
+      // console.log(selectedCorp,"test crop id");
     }
   }, [selectedCorp]);
   return (
@@ -239,7 +236,9 @@ const EnvironmentHeade2 = ({
                 <div className="rounded-lg shadow  justify-start items-start flex">
                   <div
                     className={`w-[111px] px-4 py-2.5 border rounded-l-lg border-gray-300 justify-center items-center gap-2 flex cursor-pointer ${
-                      reportType === "Organization" ? "bg-[#d2dfeb]" : "bg-white"
+                      reportType === "Organization"
+                        ? "bg-[#d2dfeb]"
+                        : "bg-white"
                     }`}
                     onClick={() => handleReportTypeChange("Organization")}
                   >
@@ -285,12 +284,12 @@ const EnvironmentHeade2 = ({
                           </option>
                         ))}
                     </select>
-                    <div className='absolute inset-y-0 top-8 right-2 flex items-center pl-3 pointer-events-none'>
-                                    <MdKeyboardArrowDown
-                                      className='text-neutral-500'
-                                      style={{ fontSize: '16px' }}
-                                    />{' '}
-                                  </div>
+                    <div className="absolute inset-y-0 top-2  right-2 flex items-center pl-3 pointer-events-none">
+                      <MdKeyboardArrowDown
+                        className="text-neutral-500"
+                        style={{ fontSize: "16px" }}
+                      />{" "}
+                    </div>
                     {errors.organization && (
                       <p className="text-[#007EEF] text-[12px] top=16  left-0 pl-2 mt-2">
                         {errors.organization}
@@ -315,17 +314,21 @@ const EnvironmentHeade2 = ({
                         <option value="">Select Corporate </option>
                         {corporates &&
                           corporates.map((corp) => (
-                            <option key={corp.id} value={corp.id} name={corp.name}>
+                            <option
+                              key={corp.id}
+                              value={corp.id}
+                              name={corp.name}
+                            >
                               {corp.name}
                             </option>
                           ))}
                       </select>
-                      <div className='absolute inset-y-0 top-8 right-2 flex items-center pl-3 pointer-events-none'>
-                                      <MdKeyboardArrowDown
-                                        className='text-neutral-500'
-                                        style={{ fontSize: '16px' }}
-                                      />{' '}
-                                    </div>
+                      <div className="absolute inset-y-0 top-2  right-2 flex items-center pl-3 pointer-events-none">
+                        <MdKeyboardArrowDown
+                          className="text-neutral-500"
+                          style={{ fontSize: "16px" }}
+                        />{" "}
+                      </div>
                       {errors.corporate && (
                         <p className="text-[#007EEF] text-[12px] top=16  left-0 pl-2 mt-2">
                           {errors.corporate}
@@ -356,12 +359,12 @@ const EnvironmentHeade2 = ({
                         </option>
                       ))}
                     </select>
-                    <div className='absolute inset-y-0 top-8 right-2 flex items-center pl-3 pointer-events-none'>
-                                    <MdKeyboardArrowDown
-                                      className='text-neutral-500'
-                                      style={{ fontSize: '16px' }}
-                                    />{' '}
-                                  </div>
+                    <div className="absolute inset-y-0 top-2  right-2 flex items-center pl-3 pointer-events-none">
+                      <MdKeyboardArrowDown
+                        className="text-neutral-500"
+                        style={{ fontSize: "16px" }}
+                      />{" "}
+                    </div>
                     {errors.year && (
                       <p className="text-[#007EEF] text-[12px] top=16  left-0 pl-2 mt-2">
                         {errors.year}

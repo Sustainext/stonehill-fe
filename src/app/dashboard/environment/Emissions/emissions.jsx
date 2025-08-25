@@ -232,7 +232,7 @@ transition-transform duration-300 ease-in-out z-[100] shadow-2xl px-2`}
             setLocationname={setLocationname}
           />
 
-          <div className='mb-4'>
+          {/* <div className='mb-4'>
             <button
               onClick={() => setIsModalOpen(true)}
               className='flex bg-transparent text-[#007EEF] text-[13px] ml-6'
@@ -253,7 +253,7 @@ transition-transform duration-300 ease-in-out z-[100] shadow-2xl px-2`}
               setIsModalOpen={setIsModalOpen}
               showToast={showToast}
             />
-          </div>
+          </div> */}
           <Emissionsnbody
             open={open}
             location={location}

@@ -1097,13 +1097,13 @@ const Report = () => {
                           <option value='' disabled selected hidden>Select Report Type</option>
                           <option>GHG Accounting Report</option>
                           <option>GHG Report - Investments</option>
-                          <option>GRI Report: In accordance With</option>
-                          <option>GRI Report: With Reference to</option>
-                          <option value="canada_bill_s211_v2">
+                          {/* <option>GRI Report: In accordance With</option>
+                          <option>GRI Report: With Reference to</option> */}
+                          {/* <option value="canada_bill_s211_v2">
                             Bill S-211
-                          </option>
-                          { isTCFDAvailable() && <option value="TCFD">TCFD</option>}
-                          <option>Custom ESG Report</option>
+                          </option> */}
+                          {/* { isTCFDAvailable() && <option value="TCFD">TCFD</option>}
+                          <option>Custom ESG Report</option> */}
                         </select>
                         {error.reporttype && (
                           <p className="text-red-500 text-sm ml-1">

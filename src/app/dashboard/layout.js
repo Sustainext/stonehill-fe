@@ -74,14 +74,14 @@ export default function DashboardLayout({ children }) {
           </div>
 
           {/* Fixed Elfsight Widget for Mobile */}
-          <div className='fixed top-16 left-0 w-full z-40 bg-white'>
+          {/* <div className='fixed top-16 left-0 w-full z-40 bg-white'>
             <div className='elfsight-widget px-4 py-2'>
               <div
                 className='elfsight-app-1163c096-07de-4281-9338-996a26b6eec8'
                 data-elfsight-app-lazy
               ></div>
             </div>
-          </div>
+          </div> */}
 
           {/* Scrollable Main Content */}
           <div className='flex-1 overflow-y-auto mt-32 px-4'>{children}</div>
@@ -101,12 +101,12 @@ export default function DashboardLayout({ children }) {
             {/* Fixed Header and Elfsight Widget */}
             <div className='flex-shrink-0 w-full'>
               <DashboardHeader />
-              <div className='elfsight-widget'>
+              {/* <div className='elfsight-widget'>
                 <div
                   className='elfsight-app-1163c096-07de-4281-9338-996a26b6eec8'
                   data-elfsight-app-lazy
                 ></div>
-              </div>
+              </div> */}
             </div>
 
             {/* Scrollable Content - Constrained to available space */}

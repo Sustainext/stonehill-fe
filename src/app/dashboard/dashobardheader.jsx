@@ -321,7 +321,7 @@ const DashboardHeader = () => {
                   ></ReactTooltip> */}
               </div>
 
-              <div
+              {/* <div
                 ref={bellIconRef}
                 className='flex items-center mx-3 rounded-md hover:bg-gray-100 hover:shadow-sm p-1 cursor-pointer transition-all duration-200'
                 onClick={() => {
@@ -335,10 +335,10 @@ const DashboardHeader = () => {
                     2
                   </span>
                 </div>
-              </div>
+              </div> */}
 
               <div
-                className='relative cursor-pointer flex-shrink-0'
+                className='relative cursor-pointer flex-shrink-0 ml-4'
                 onClick={() => {
                   console.log('Profile clicked!');
                   toggleDropdown();
@@ -573,10 +573,10 @@ const DashboardHeader = () => {
         setIsModalOpen={setIsModalOpen}
       />
 
-      <NotificationsModal
+      {/* <NotificationsModal
         isOpen={notificationsVisible}
         onClose={() => setNotificationsVisible(false)}
-      />
+      /> */}
     </>
   );
 };

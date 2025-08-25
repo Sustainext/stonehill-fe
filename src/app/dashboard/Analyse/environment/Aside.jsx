@@ -50,7 +50,7 @@ const Aside = ({ activeTab, handleTabClick, setMobileopen }) => {
             <IoBusinessOutline className='w-5 h-5 mr-5' />
             <span className='mr-7'>Emissions</span>
           </button>
-          <div>
+          {/* <div>
             <button
               className={`flex items-center justify-start px-2 py-2 mb-2 focus:outline-none w-full ${
                 activeTab === 'Energy'
@@ -63,9 +63,9 @@ const Aside = ({ activeTab, handleTabClick, setMobileopen }) => {
               <span className='mr-12'>Energy</span>
               <div className='inset-y-0 -right-2 flex items-center pointer-events-none'></div>
             </button>
-          </div>
+          </div> */}
 
-          <button
+          {/* <button
             className={`flex items-center justify-start px-2 py-2 mb-2 focus:outline-none w-full ${
               activeTab === 'Waste Management'
                 ? 'text-[#007EEF] border-l-4 border-[#007EEF]'
@@ -75,7 +75,7 @@ const Aside = ({ activeTab, handleTabClick, setMobileopen }) => {
           >
             <IoTrashOutline className='w-5 h-5 mr-5' />
             <span className=''>Waste Management</span>
-          </button>
+          </button> */}
 
           {/* <button
             className={`flex items-center justify-start px-2 py-2 mb-2 focus:outline-none w-full ${
@@ -101,7 +101,7 @@ const Aside = ({ activeTab, handleTabClick, setMobileopen }) => {
 
             <span className="mr-12">Effluents</span>
           </button> */}
-
+{/* 
           <button
             className={`flex justify-start px-2 py-1 mb-2 focus:outline-none w-full ${
               activeTab === 'Material Use and Efficiency'
@@ -114,9 +114,9 @@ const Aside = ({ activeTab, handleTabClick, setMobileopen }) => {
             <span className='text-left sm:w-[92px] md:w-[92px] lg:w-[92px] xl:w-[92px] 2xl:w-[92px] 3xl:w-[198px]'>
               Material Use and Efficiency
             </span>
-          </button>
+          </button> */}
           {/* packaging material */}
-          <button
+          {/* <button
             className={`flex justify-start px-2 py-1 mb-2 focus:outline-none w-full ${
               activeTab === 'Packaging Materials'
                 ? 'text-[#007EEF] border-l-4 border-[#007EEF]'
@@ -139,7 +139,7 @@ const Aside = ({ activeTab, handleTabClick, setMobileopen }) => {
           >
             <IoWaterOutline className='w-5 h-5 mr-5' />
             <span className=''>Water and effluents</span>
-          </button>
+          </button> */}
           {/* <button
             className={`flex items-center justify-start  px-2 py-2 mb-2 focus:outline-none ${
               activeTab === "Bio diversity"
@@ -152,7 +152,7 @@ const Aside = ({ activeTab, handleTabClick, setMobileopen }) => {
             <span className="mr-4">Bio diversity</span>
           </button> */}
 
-          <button
+          {/* <button
             className={`flex justify-start px-2 py-1 mb-2 focus:outline-none w-full ${
               activeTab === 'Supplier Environmental Assessment'
                 ? 'text-[#007EEF] border-l-4 border-[#007EEF]'
@@ -165,11 +165,11 @@ const Aside = ({ activeTab, handleTabClick, setMobileopen }) => {
               Supplier Environmental Assessment
             </span>
             <div className='inset-y-0 -right-2 flex items-center pointer-events-none'>
-              {/* <MdKeyboardArrowDown className={`text-lg text-neutral-500${isSupplierVisible && "rotate-i80"}`}/> */}
+             
             </div>
-          </button>
+          </button> */}
 
-          <button
+          {/* <button
             className={`flex justify-start px-2 py-1 mb-2 focus:outline-none w-full ${
               activeTab === 'Air Quality & other emissions'
                 ? 'text-[#007EEF] border-l-4 border-[#007EEF]'
@@ -182,9 +182,9 @@ const Aside = ({ activeTab, handleTabClick, setMobileopen }) => {
               Air Quality & other emissions
             </span>
             <div className='inset-y-0 -right-2 flex items-center pointer-events-none'>
-              {/* <MdKeyboardArrowDown className={`text-lg text-neutral-500${isSupplierVisible && "rotate-i80"}`}/> */}
+             
             </div>
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

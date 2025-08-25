@@ -55,7 +55,7 @@ const Index = () => {
         {activeModule === "Environment" && (
           <EnvironmentTrack dashboardData={dashboardData} />
         )}
-        {activeModule === "Social" && (
+        {/* {activeModule === "Social" && (
           <SocialTrack dashboardData={dashboardData} />
         )}
         {activeModule === "Governance" && (
@@ -66,7 +66,7 @@ const Index = () => {
         )}
         {activeModule === "Economic" && (
           <EconomicTrack dashboardData={dashboardData} />
-        )}
+        )} */}
       </div>
     </div>
   );
